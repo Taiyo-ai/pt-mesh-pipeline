@@ -42,7 +42,6 @@ The tree diagram below represents a general file structure
     - Convert country codes to `ISO 3166-1 alpha3` i.e. 3 letter format
     - Identify region name and region code using the country code
 3. Geocoding
-    > Depending upon what fields are already available in the data `GEOCODING` step may or may not be required
     - Based upon location information available in the data
         - Location label
         - Geo-spatial coordinates
@@ -56,6 +55,8 @@ The tree diagram below represents a general file structure
     - Manipulation of certain fields and values to meet up the global standards for presentation, analytics and business use of data
     - Refer to the [Global Field Standards](https://docs.google.com/spreadsheets/d/1sbb7GxhpPBE4ohW6YQEakvrEkkFSwvUrXnmG4P_B0OI/edit#gid=0) spreadsheet for the standards to be followed
 
-## Note
+### Note
+> Depending upon what fields are already available in the data `GEOCODING` step may or may not be required
+
 > It is recommended that the resultant data after each and every step is stored and backed up for recovery purpose
 
