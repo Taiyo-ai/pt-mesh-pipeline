@@ -63,3 +63,5 @@ The tree diagram below represents a general file structure
 ## Submission and Evaluation
 - For assignment submission guidelines and evaluation criteria refer to the [WIKI](https://github.com/Taiyo-ai/pt-mesh-pipeline/wiki) documentation
 
+---
+Copyright © 2021 Taiyō.ai Inc.
