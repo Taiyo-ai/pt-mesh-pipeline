@@ -56,11 +56,11 @@ The tree diagram below represents a general file structure
     - Refer to the [Global Field Standards](https://docs.google.com/spreadsheets/d/1sbb7GxhpPBE4ohW6YQEakvrEkkFSwvUrXnmG4P_B0OI/edit#gid=0) spreadsheet for the standards to be followed
 
 ### Note
-> Depending upon what fields are already available in the data `GEOCODING` step may or may not be required
+> Depending upon what fields are already available in the data `GEOCODING` step may or may not be required.
 
-> It is recommended that the resultant data after each and every step is stored and backed up for recovery purpose
+> It is recommended that the resultant data after each and every step is stored and backed up for recovery purpose.
 
-> Apart from the primary fields listed down in [Global Field Standards](https://docs.google.com/spreadsheets/d/1sbb7GxhpPBE4ohW6YQEakvrEkkFSwvUrXnmG4P_B0OI/edit#gid=0) spreadsheet, there are many secondary fields 
+> Apart from the primary fields listed down in [Global Field Standards](https://docs.google.com/spreadsheets/d/1sbb7GxhpPBE4ohW6YQEakvrEkkFSwvUrXnmG4P_B0OI/edit#gid=0) spreadsheet, there are several other secondary fields that are to be scraped; given by the data provider for every document that holds significant business importance.
 
 ## Submission and Evaluation
 - For assignment submission guidelines and evaluation criteria refer to the [WIKI](https://github.com/Taiyo-ai/pt-mesh-pipeline/wiki) documentation
