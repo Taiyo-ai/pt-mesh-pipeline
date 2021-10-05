@@ -60,6 +60,8 @@ The tree diagram below represents a general file structure
 
 > It is recommended that the resultant data after each and every step is stored and backed up for recovery purpose
 
+> Apart from the primary fields listed down in [Global Field Standards](https://docs.google.com/spreadsheets/d/1sbb7GxhpPBE4ohW6YQEakvrEkkFSwvUrXnmG4P_B0OI/edit#gid=0) spreadsheet, there are many secondary fields 
+
 ## Submission and Evaluation
 - For assignment submission guidelines and evaluation criteria refer to the [WIKI](https://github.com/Taiyo-ai/pt-mesh-pipeline/wiki) documentation
 
