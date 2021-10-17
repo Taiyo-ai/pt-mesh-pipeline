@@ -232,7 +232,8 @@ class Scrapping:
         
         
         try:
-            latitude,longitude= Geocode.geolocate(country_iso,town)
+            geocode= Geocode(country_iso,town)
+            latitude,longitude= geocode.geolocate()
             final_data.at[0,'latitude']=   latitude
             final_data.at[0,'longitude']=   longitude
     
