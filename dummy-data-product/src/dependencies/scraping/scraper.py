@@ -78,12 +78,12 @@ class Scrapping:
         try:   
             final_data.at[0,'doc_id']= doc_id
             final_data.at[0,'notice_status']=scope
-            cpv_code= soup.find('cpv_main')
+            cpv_code= soup.find('CPV_MAIN')
             cpv_code= str(cpv_code)
-            cpv_code =''.join(filter(lambda i: i.isdigit(), cpv_code ))
+            cpv_code =''.join(filter(lambda i: i.isdigit(), cpv_code )) 
             final_data.at[0,'cpv_code']= cpv_code
             
-            reception_id= soup.find('reception_id')
+            reception_id= soup.find('RECEPTION_ID')
             reception_id_data =reception_id.get_text() 
             final_data.at[0,'reception_id']= reception_id_data
             
