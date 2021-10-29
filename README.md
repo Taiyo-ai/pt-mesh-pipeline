@@ -62,7 +62,12 @@ The tree diagram below represents a general file structure
 
 > Apart from the primary fields listed down in [Global Field Standards](https://docs.google.com/spreadsheets/d/1sbb7GxhpPBE4ohW6YQEakvrEkkFSwvUrXnmG4P_B0OI/edit#gid=0) spreadsheet, there are several other secondary fields that are to be scraped; given by the data provider for every document that holds significant business importance.
 
-## Submission and Evaluation
+## Get started with
+- Fork the repository by clicking the `Fork` button on top right-hand side corner of the page.
+- After creating fork repo, create a branch in that repo and finally create a `PULL REQUEST` from fork repo branch to the main branch in upstream branch of root repo.
+
+
+### Submission and Evaluation
 - For assignment submission guidelines and evaluation criteria refer to the [WIKI](https://github.com/Taiyo-ai/pt-mesh-pipeline/wiki) documentation
 
 ---
