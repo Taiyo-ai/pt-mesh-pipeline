@@ -15,6 +15,7 @@ li5 = []  #empty list to store country
 li6 = []  #empty list to store country code
 li7 = []  #empty list to store url
 li8 = []  #empty list to store source
+li9 = []  #empty list to store budget
 
 #there are 1236 pages, but for this assignment I'm considering first 5 pages.
 def scrape():
@@ -78,13 +79,18 @@ def scrape():
           for i in document1.find_all('span',{'id':'mcConsultantSource'}):
             source = i.contents[0].contents[0]
             li8.append(source)
+
+         #scraping budget, if the file isn't PDF. 
+          for j in document1.find_all('span',{'id':'mstBudgetAmount'}):
+            budget = j.contents[0]
+            li9.append(budget)
+
         else: #if the file is a pdf file, asigning it a NA string.
           li8.append('NA')
+          li9.append('NA')
    
     data['url'] = li7
     data['source'] = li8
-
+    data['budget'] = li9
 
   return data
-
-print(scrape())
