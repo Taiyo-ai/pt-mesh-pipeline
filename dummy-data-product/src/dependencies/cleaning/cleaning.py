@@ -25,6 +25,7 @@ class Transform:
         filepath = Path('E:/Taiyo/Interest rates for 48 month loan.csv')
         filepath.parent.mkdir(parents=True, exist_ok=True)
         df.to_csv(filepath)
-obj=Transform()
-obj.transform2()
-obj.transform1()
+if __name__ == '__main__':
+    obj=Transform()
+    obj.transform2()
+    obj.transform1()
