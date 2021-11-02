@@ -1,0 +1,5 @@
+Selenium
+Webdriver (ChromeDriver)
+Pandas
+Pathlib
+Website used = https://fred.stlouisfed.org/categories/22.
