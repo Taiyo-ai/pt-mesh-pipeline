@@ -2,7 +2,7 @@ import schedule
 import time
 from extract import Extract
 from trannsform import Transform
-def scheduler():
+def scheduler(self):
     extr_obj=Extract()
     trans_obj=Transform()
     if __name__ == '__main__':
@@ -10,3 +10,4 @@ def scheduler():
         schedule.every().day.at("00:00").do(trans_obj.transform1())
         schedule.every().day.at("00:00").do(trans_obj.transform2())
 
+scheduler()
