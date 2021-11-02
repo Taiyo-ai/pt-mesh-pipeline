@@ -2,11 +2,8 @@ import requests
 import json
 from bs4 import BeautifulSoup
 import csv
-import requests
-from bs4 import BeautifulSoup
 
-# conn1=mysql.connector.connect(user='root',password='####',host='localhost',database='my_db',port=3306)
-# myc1=conn1.cursor(buffered=True)
+
 def extract():
     csv_file = open('Data(with Duplications).csv', 'w+')
     writer = csv.writer(csv_file)
@@ -123,14 +120,6 @@ def extract():
                     writer.writerow(data)
 
 
-    #                 try:
-    #                     sql1=f"INSERT INTO tender(Title,Status,Summary,Notice_type,Approval_number,Executing_Agency,Contractor_names,Address,Total_contract_Amount,Total_amount_adb) VALUES ('{item_title}','{item_meta}','{item_summary}','{notice_type}','{approval_number}','{Executing_Agency}','{Contractor_Name}','{Address}','{Total_Contract_Amount}','{Contract_Amount_Financed_by_ADB}');"
-
-    #                     myc1.execute(sql1)
-
-    #                     conn1.commit()  
-    #                 except Exception as e:
-    #                     print(e)
 
                     j+=1
 
