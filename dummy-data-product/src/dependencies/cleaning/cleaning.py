@@ -1,7 +1,7 @@
 import pandas as pd
 from pathlib import Path
 class Transform:
-    def transform2():
+    def transform2(self):
         df=pd.read_csv(r'C:\Users\Dhyey\Downloads\RIFLPBCIANM60NM.csv')
         # print(df.head())
         df.drop(df[df['RIFLPBCIANM60NM']==('.')].index,inplace=True)
@@ -13,7 +13,7 @@ class Transform:
         filepath = Path('E:/Taiyo/Interest rates for 60 month loan.csv')
         filepath.parent.mkdir(parents=True, exist_ok=True)
         df.to_csv(filepath)
-    def transform1():
+    def transform1(self):
         df=pd.read_csv(r'C:\Users\Dhyey\Downloads\TERMCBAUTO48NS.csv')
         # print(df.head())
         df.drop(df[df['TERMCBAUTO48NS']==('.')].index,inplace=True)
