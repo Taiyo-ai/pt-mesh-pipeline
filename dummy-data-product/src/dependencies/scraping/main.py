@@ -3,7 +3,6 @@ import json
 from bs4 import BeautifulSoup
 import csv
 
-
 def extract():
     csv_file = open('Data(with Duplications).csv', 'w+')
     writer = csv.writer(csv_file)
