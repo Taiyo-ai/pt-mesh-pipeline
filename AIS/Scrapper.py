@@ -1,5 +1,6 @@
 import re
 import requests 
+import pymongo
 import json
 from datetime import datetime
 from bs4 import BeautifulSoup
@@ -86,11 +87,30 @@ class vessel_status:
                 self.vessel_data_scrap(url, self.ids[length])
             return self.Load_ALL_Vessel_Data(length+1)
 
+    def load_config(self,save_on_local_system=False,Local_Path='',Save_on_Mongodb_db=False,db_URL='',Collection_name="Scraped_Data"):
+        """ 
+        This fuction is used to specify the save destination of scraped data
+        TO save data on local system:
+            load_config(save_on_local_system=True,Local_Path="{Your path to save data}")
+        TO save data on Mongodb database:
+            load_config(Save_on_Mongodb_db=True,db_URL="{Database connection url}",Collection_name="{Collection name you want to use inside mongodb db(by default it use Scraped_Data as collection name)}")
+        """
+        if save_on_local_system:
+            with open(Local_Path+'Submission.json','w') as output_file: ## Load (can be done over database(MongoDB, Mysql, etc) but for now just save in local file called submission.json )
+                output_file.write( json.dumps(self.data, indent=4))
+        elif Save_on_Mongodb_db:
+            myclient = pymongo.MongoClient(db_URL)
+            mydb = myclient["AIS_Database"]
+            mycol = mydb[Collection_name]
+            mycol.insert_one(self.data)
+        else:
+            return "Please select any save option"
+
     def run(self):
         self.scrape_data() ## Extract
         self.Load_ALL_Vessel_Data() ## Transform
-        with open('Submission.json','w') as output_file: ## Load (can be done over database(MongoDB, Mysql, etc) but for now just save in local file called submission.json )
-            output_file.write( json.dumps(self.data, indent=4))
+        self.load_config(save_on_local_system=True,Local_Path="") ## Load (can be done over database(MongoDB, Mysql, etc) but for now just save in local file called submission.json )
+        #self.load_config(Save_on_Mongodb_db=True,db_URL="mongodb://127.0.0.1:27017/")   
 
 if __name__ == '__main__':
     ETL = vessel_status(bs4_data)
