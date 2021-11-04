@@ -28,14 +28,14 @@ li7 = []  #empty list to store url
 li8 = []  #empty list to store source
 li9 = []  #empty list to store budget
 
-#there are 1236 pages, but for this assignment I'm considering first 5 pages.
+#initiating class for scraping
 class scraping:
 
   def __init__(self, **kwargs):
     self.config = kwargs.get("config")
 
   def scrape(self):
-    
+    #scraping number of entries from the page and dividing it by 20, to get total number of pages as each contains 20 entries.
     url = 'https://www.adb.org/projects/tenders'
     req = requests.get(url)
     scrape = req.text
@@ -43,7 +43,8 @@ class scraping:
     for i in document1.find_all('div',{'class':'list-stats'}):
       pages = i.contents[0].split(' ')[3]
       max_page = math.ceil(int(pages)/20)
-      
+    
+    #starting scraping for max_page number of pages
     for i in range(max_page):
       headers = {'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36'}
       result = requests.get('https://www.adb.org/projects/tenders?page='+str(i), headers = headers)
@@ -72,15 +73,12 @@ class scraping:
         except IndexError:
           li4.append(np.nan)
 
-
-      #Adding Map Co-ordinates
-      #Since, map co-ordinates aren't given, puttin [] in place.
       #scraping consultant source and budget
       for i in document.find_all('div',{'class':'item-title'}):
         for link in i.find_all('a'):
           url = 'https://www.adb.org'+ link.get('href')
           li7.append(url)
-          #print(url)
+
           #scraping source if it's not a pdf file
           if (requests.get(url).url[-3:] != 'pdf'):
             r = requests.get(url)
@@ -88,7 +86,7 @@ class scraping:
             scrp = re_link.text
             document1 = BeautifulSoup(scrp, 'html.parser')
 
-            #scraping the country code and name
+            #scraping the country code and name if it's not a pdf file
             for i in document1.find_all('span',{'id':'atAgency:mstCountry:0'}):
               country_val = i.contents[0]
               li5.append(country_val)
@@ -125,6 +123,9 @@ class scraping:
       data['Sector'] = li4
       data['Country'] = li5
       data['country_code'] = li6
+      
+      #Adding Map Co-ordinates
+      #Since, map co-ordinates aren't given, puttin [] in place.
       data['map_cordinates'] = '[]'
       data['project_or_tender'] = 'T'   #scraping only tender data for this project
       data['url'] = li7
