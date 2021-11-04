@@ -1,21 +1,29 @@
 import sys
-%pip install pycountry
 import pandas as pd
-#sys.path.insert(0, 'dummy-data-product/src/dependencies/scraping/')
-#import scraper
 
-from scraping import scraper
-data = scraper.scrape()
+class standardize:
 
-# renaming column names as given
-data = data.rename(columns={'Name':'name','Status':'status','Date':'timestamps','Sector':'sector','Country':'country'})
+    def __init__(self, data, **kwargs):
+        self.config = kwargs.get("config")
+        self.data = data
 
-#Mapping status
+    def standard(self):
+        
+        # renaming column names as given
+        data = self.data.rename(columns={'Name':'name','Status':'status','Date':'timestamps','Sector':'sector','Country':'country_name'})
 
-data.loc[data['status'] == 'Approved', 'status'] = 'Active'
-data.loc[data['status'] == 'Archived', 'status'] = 'Closed'
-data.loc[data['status'] == 'Dropped', 'status'] = 'Cancelled'
-data.loc[data['status'] == 'Terminated', 'status'] = 'Cancelled'
+        #Mapping status
+        data.loc[data['status'] == 'Approved', 'status'] = 'Active'
+        data.loc[data['status'] == 'Archived', 'status'] = 'Closed'
+        data.loc[data['status'] == 'Dropped', 'status'] = 'Cancelled'
+        data.loc[data['status'] == 'Terminated', 'status'] = 'Cancelled'
 
-#changing timestamps column to datetime format
-data['timestamps'] = pd.to_datetime(data['timestamps'])
+        #changing timestamps column to datetime format
+        data['timestamps'] = pd.to_datetime(data['timestamps'])
+
+        return data
+
+if __name__ == "__main__":
+  config = {}
+  obj = standardize(data, config = config)
+  result = obj.standard()
