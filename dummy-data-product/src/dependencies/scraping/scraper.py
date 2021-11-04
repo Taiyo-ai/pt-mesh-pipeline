@@ -5,7 +5,17 @@ from bs4 import BeautifulSoup
 import re
 import dateutil
 import pandas as pd
+import numpy as np
 import pycountry
+import math
+import warnings
+warnings.filterwarnings('ignore')
+
+import sys
+sys.path.insert(1, 'C:/Users/Sam/Desktop/pt-mesh-pipeline-main/pt-mesh-pipeline-main/dummy-data-product/src/dependencies/cleaning')
+sys.path.insert(1, 'C:/Users/Sam/Desktop/pt-mesh-pipeline-main/pt-mesh-pipeline-main/dummy-data-product/src/dependencies/standardization')
+import cleaning
+import standardizer
 
 #initiatin global variables
 li = [] #empty list to store title of tenders
@@ -19,17 +29,26 @@ li8 = []  #empty list to store source
 li9 = []  #empty list to store budget
 
 #there are 1236 pages, but for this assignment I'm considering first 5 pages.
-
 class scraping:
 
   def __init__(self, **kwargs):
     self.config = kwargs.get("config")
 
   def scrape(self):
-    for i in range(2):
-      result = requests.get('https://www.adb.org/projects/tenders?page='+str(i))
+    
+    url = 'https://www.adb.org/projects/tenders'
+    req = requests.get(url)
+    scrape = req.text
+    document1 = BeautifulSoup(scrape, 'html.parser')
+    for i in document1.find_all('div',{'class':'list-stats'}):
+      pages = i.contents[0].split(' ')[3]
+      max_page = math.ceil(int(pages)/20)
+      
+    for i in range(max_page):
+      headers = {'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36'}
+      result = requests.get('https://www.adb.org/projects/tenders?page='+str(i), headers = headers)
       src = result.text
-      document = BeautifulSoup(src, 'lxml')
+      document = BeautifulSoup(src, 'html.parser')
 
       #finding title
       for table in document.find_all("div", {"class": "item-title"}):
@@ -51,17 +70,7 @@ class scraping:
         try:
           li4.append(sector.contents[0].split(';')[2])
         except IndexError:
-          li4.append('NA')
-
-      #scraping the country code and name
-      for country in document.find_all('div',{'class':'item-summary'}):
-        country_val = country.contents[0].split(';')[1]
-        li5.append(country_val)
-        try:
-          code = pycountry.countries.search_fuzzy(country_val)[0].numeric
-          li6.append(code)
-        except:
-          li6.append('NA')
+          li4.append(np.nan)
 
 
       #Adding Map Co-ordinates
@@ -77,23 +86,38 @@ class scraping:
             r = requests.get(url)
             re_link = requests.get(r.url)
             scrp = re_link.text
-            document1 = BeautifulSoup(scrp, 'lxml')
+            document1 = BeautifulSoup(scrp, 'html.parser')
+
+            #scraping the country code and name
+            for i in document1.find_all('span',{'id':'atAgency:mstCountry:0'}):
+              country_val = i.contents[0]
+              li5.append(country_val)
+              try:
+                code = pycountry.countries.search_fuzzy(country_val)[0].numeric
+                li6.append(code)
+              except:
+                li6.append(np.nan)
+                
+            #scarping source
             if (document1.find_all('span',{'id':'mcConsultantSource'})):
               for i in document1.find_all('span',{'id':'mcConsultantSource'}):
                 source = i.contents[0].text
                 li8.append(source)
             else:
-              li8.append('NA')
+              li8.append(np.nan)
+              
           #scraping budget, if the file isn't PDF. 
             if (document1.find_all('span',{'id':'mstBudgetAmount'})):
               for j in document1.find_all('span',{'id':'mstBudgetAmount'}):
                 budget = j.contents[0]
                 li9.append(budget)
             else:
-                li9.append('NA')
+                li9.append(np.nan)
           else: #if the file is a pdf file, asigning it a NA string.
-            li8.append('NA')
-            li9.append('NA')
+            li8.append(np.nan)
+            li9.append(np.nan)
+            li5.append(np.nan)
+            li6.append(np.nan)
             
       data = pd.DataFrame({'Name':li})
       data['Status'] = li2
@@ -106,10 +130,24 @@ class scraping:
       data['url'] = li7
       data['source'] = li8
       data['budget'] = li9
+      
     return data
 
+  def clean(self):
+
+    data_to_clean = self.scrape()
+    clean_data = cleaning.cleaning(data_to_clean).clean()
+
+    return (clean_data)    
+
+  def standards(self):
+    
+    data_to_standardize = self.clean()
+    standardize_data = standardizer.standardize(data_to_standardize).standard()
+    return (standardize_data)
+  
   def run(self):
-    output = self.scrape()
+    output = self.standards()
     return (output.to_csv('adb.csv', index = False))
 
 if __name__ == "__main__":
