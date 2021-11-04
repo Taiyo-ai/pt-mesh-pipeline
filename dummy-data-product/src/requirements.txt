@@ -1,0 +1,9 @@
+bs4==4.6.3
+dateutil==2.8.2
+numpy==1.19.5
+pandas==1.1.5
+pycountry==20.7.3
+re==2.2.1
+requests==2.23.0
+sys==3.7.12
+warnings
