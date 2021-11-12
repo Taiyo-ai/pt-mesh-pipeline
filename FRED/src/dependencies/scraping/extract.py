@@ -5,8 +5,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 class Extract:
-    driver = webdriver.Chrome(ChromeDriverManager().install())
     def extract(self,links):
+        driver = webdriver.Chrome(ChromeDriverManager().install())
         driver.get('https://fred.stlouisfed.org/categories/33058')
 #         links=['https://fred.stlouisfed.org/series/TERMCBAUTO48NS','https://fred.stlouisfed.org/series/RIFLPBCIANM60NM','https://fred.stlouisfed.org/series/TERMAFCNCNSA']
         for i in links:
