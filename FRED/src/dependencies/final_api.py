@@ -20,7 +20,7 @@ class MyClass:
         self.search_key=input()
         self.obs_start = input()
         self.obs_end = input()
-    
+
     
     def extract(self):
         # fred = Fred(api_key='795348edc3b0f46479b0ecba8cd33c70')
@@ -47,7 +47,7 @@ class MyClass:
         df.dropna(inplace=True)
         df.columns=['Date','Interest Rates']
         df.to_csv(config['cleaned_data_path'])
-        
+
 
     def load(self):
         df=pd.read_csv(config['cleaned_data_path'])
@@ -58,8 +58,8 @@ class MyClass:
 
 
 if __name__ == "__main__":
-    raw_path = r'C:\Users\Dhyey\Desktop\pt-mesh-pipeline\data/content.csv'
-    cleaned_path = r'C:\Users\Dhyey\Desktop\pt-mesh-pipeline\data/cleaned.csv'
+    raw_path = r'data/content.csv'
+    cleaned_path = r'data/cleaned.csv'
     raw_relative = os.path.relpath(raw_path)
     cleaned_relative = os.path.relpath(cleaned_path)
 
