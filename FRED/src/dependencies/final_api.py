@@ -30,6 +30,10 @@ class MyClass:
             series=input()
             if series in df['id']:
                 print('Rates for ',df[df.id==series]['title'])
+                data2 = df[df.id==series]
+                # print(data2)
+                metadata=pd.DataFrame(data2)
+                metadata.to_csv(config['metadata_path'])
                 data = fred.get_series(series,observation_start=self.obs_start,observation_end=self.obs_end)
 
                 data1=pd.DataFrame(data)
@@ -47,12 +51,19 @@ class MyClass:
         df.dropna(inplace=True)
         df.columns=['Date','Interest Rates']
         df.to_csv(config['cleaned_data_path'])
+        df1=pd.read_csv(config['metadata_path'])
+        df1.dropna()
+        df1.to_csv(config['metadata_path'])
 
 
     def load(self):
+        df1=pd.read_csv(config['metadata_path'])
+        df1 = df1.iloc[: , 1:]
+        print(df1)
         df=pd.read_csv(config['cleaned_data_path'])
         df = df.iloc[: , 1:]
         print(df)
+        
 
 
 
@@ -64,14 +75,16 @@ if __name__ == "__main__":
     # cleaned_relative = os.path.relpath(cleaned_path)
     # print(raw_relative)
     # print(cleaned_relative)
+    
     config = {    
             "raw_data_path":'data/content.csv' ,
             "cleaned_data_path":'data/cleaned.csv' ,
+            "metadata_path":'data/metadata.csv'
     }
-
     obj=MyClass(config=config)
     obj.take_input()
     obj.extract()
     obj.clean()
     obj.load()
+    
 
