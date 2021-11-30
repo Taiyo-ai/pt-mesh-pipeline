@@ -1,0 +1,17 @@
+metadata:
+    description: Contains relative paths to Google Cloud Storage Bucket for different sources to be harvested
+    bucket_name: psd_data
+
+paths:
+    <dummy_name>:
+        reference_urls_path: projects/<dummy_name>/metadata/project_ids_urls.csv
+        base_data_path: projects/<dummy_name>/metadata/<dummy_name>_base_data.csv
+        successful_urls_path: projects/<dummy_name>/metadata/<dummy_name>_success_urls.csv
+        failed_urls_path: projects/<dummy_name>/metadata/<dummy_name>_failed_urls.csv
+        master_data_path: projects/<dummy_name>/raw/<dummy_name>_master_data.csv
+        master_geodata_path: projects/<dummy_name>/raw/<dummy_name>_master_geodata.csv
+        cleaned_data_path: projects/<dummy_name>/cleaned/<dummy_name>_cleaned_data.csv
+        geocoded_data_path: projects/<dummy_name>/geocoded/<dummy_name>_geocoded_data.csv
+        standardized_data_path: projects/<dummy_name>/standardized/<dummy_name>_standardized_data.csv
+        embeddings_path: projects/<dummy_name>/embeddings
+        metadata_path: projects/<dummy_name>/metadata/metadata.json
