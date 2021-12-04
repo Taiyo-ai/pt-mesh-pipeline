@@ -92,3 +92,6 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
     'abd.middlewares.TooManyRequestsRetryMiddleware': 543,
 }
+
+
+FEED_EXPORT_ENCODING = 'utf-8'
