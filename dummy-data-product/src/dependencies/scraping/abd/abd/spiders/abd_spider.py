@@ -142,7 +142,7 @@ class AbdSpiderSpider(scrapy.Spider):
         # }
 
         # tabs
-        table1 = response.xpath('//div[@id="tabs-0"]/div[contains(@class, "tabs-panel")][2]/div/div/div/table')
+        table1 = response.xpath('//div[@id="tabs-0"]/div[contains(@class, "tabs-panel")][2]/div/div/div/table[1]')
 
         sec, subsec = self.getSectorsAndSubsectors(table1)
         docUrls = self.getDocUrls(response)
@@ -162,7 +162,7 @@ class AbdSpiderSpider(scrapy.Spider):
             "document_urls": docUrls,
             "sectors": sec,
             "subsectors": subsec,
-            "country_name": response.xpath('.//tr[3]/td[2]/text()').get(),
+            "country_name": response.xpath('.//tr[3]/td[2]/text()[1]').get(),
             # "country_code": ,
             # "reigon_name": ,
             # "region_code": ,
