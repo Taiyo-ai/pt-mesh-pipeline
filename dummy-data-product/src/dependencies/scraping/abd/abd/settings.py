@@ -93,5 +93,11 @@ DOWNLOADER_MIDDLEWARES = {
     'abd.middlewares.TooManyRequestsRetryMiddleware': 543,
 }
 
-
+# FEEDS = {
+#     'items.json': {
+#         'format': 'json',
+#         'encoding': 'utf8',
+#         'store_empty': False,
+#     }
+# }
 FEED_EXPORT_ENCODING = 'utf-8'

@@ -77,7 +77,6 @@ class AbdSpiderSpider(scrapy.Spider):
     def parse(self, response):
         items = response.xpath('//div[@class="list"]/div[@class="item"]')
         for item in items:
-            # try:
             meta = {
                 "status": item.xpath('.//div[1]/div[1]/span[2]/@class').get(),
                 "approvalDate": item.xpath('.//div[1]/div[2]/span[2]/@content').get(),
