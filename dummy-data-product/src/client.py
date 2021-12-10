@@ -1,7 +1,8 @@
-import dotenv
+# import dotenv
 import logging
 
 from datetime import datetime
+from dependencies.scraping.abd.abd.scraper import run_spider
 
 # Importing scraping and data processing modules
 # from dependencies.scraping.<file_name> import <class_name>
@@ -10,7 +11,7 @@ from datetime import datetime
 # from dependencies.geocoding.<file_name> import <class_name>
 # from dependencies.standardization.<file_name> import <class_name>
 
-dotenv.load_dotenv(".env")
+# dotenv.load_dotenv(".env")
 logging.basicConfig(level=logging.INFO)
 
 
@@ -39,16 +40,18 @@ def step_5():
 if __name__ == "__main__":
     import argparse
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--step", help="step to be choosen for execution")
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument("--step", help="step to be choosen for execution")
 
-    args = parser.parse_args()
+    # args = parser.parse_args()
 
-    eval(f"step_{args.step}()")
+    # eval(f"step_{args.step}()")
 
-    logging.info(
-        {
-            "last_executed": str(datetime.now()),
-            "status": "Pipeline executed successfully",
-        }
-    )
+    # logging.info(
+    #     {
+    #         "last_executed": str(datetime.now()),
+    #         "status": "Pipeline executed successfully",
+    #     }
+    # )
+    print(datetime.now().strftime(r'%d-%M-%Y'))
+    run_spider(datetime.now().strftime(r'%d-%M-%Y'))

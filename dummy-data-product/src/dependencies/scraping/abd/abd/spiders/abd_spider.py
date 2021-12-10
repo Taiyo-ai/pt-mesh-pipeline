@@ -3,7 +3,65 @@ import scrapy
 from scrapy import Request
 import logging
 from datetime import datetime as dt
+# from ...dependencies.cleaning.cleaning import clean_budget, clean_dates, sector_subsector_seperation, sector_subsector_standardisation
+# from .....cleaning.cleaning import clean_budget, clean_dates, sector_subsector_seperation, sector_subsector_standardisation
 
+def clean_budget(amts):
+    # amount already in USD
+    # convert from string to float
+    # add all amounts together
+    amt = 0
+    for amtText in amts:
+        if("million" in amtText):
+            amtText = amtText[:amtText.index("million")].strip().replace(",", "")
+            amt += float(amtText)*1000000
+        else:
+            amtText = amtText.strip().replace(",", "")
+            amt += float(amtText)
+    return amt
+
+def clean_dates(datesUnformated):
+    datesFormated = {}
+    for key, value in datesUnformated.items():
+        # logging.debug(value.strip())
+        if(len(value) > (2+1+3+1+4)):
+            # logging.debug(value)
+            # logging.debug(value[:(2+1+3+1+4)])
+            # logging.debug(value[-(2+1+3+1+4):])
+            d = dt.strptime(value[:(2+1+3+1+4)], r'%d %b %Y')
+            logging.debug(d)
+            datesFormated[key.lower().replace(" ", "_")+"_start"] = d.strftime(r'%Y-%m-%d %H:%M:%S')
+            d = dt.strptime(value[-(2+1+3+1+4):], r'%d %b %Y')
+            logging.debug(d)
+            datesFormated[key.lower().replace(" ", "_")+"_end"] = d.strftime(r'%Y-%m-%d %H:%M:%S')
+        elif (len(value) < (2+1+3+1+4)):
+            pass
+        else:
+            d = dt.strptime(value, r'%d %b %Y')
+            logging.debug(d)
+            datesFormated[key.lower().replace(" ", "_")] = d.strftime(r'%Y-%m-%d %H:%M:%S')
+    logging.debug(datesUnformated)
+    return datesFormated
+
+def sector_subsector_seperation(standardized):
+    sec = []
+    subsec = []
+    for str in standardized:
+        sec.append(str[:str.index("/")].strip())
+        subsec.append(str[str.index("/")+1:].strip())
+    return sec, subsec
+    
+
+def sector_subsector_standardisation(rawData):
+    standardized = []
+    for str in rawData:
+        str = str.replace('<p><strong class="sector">', "")
+        str = str.replace('</strong>', "")
+        str = str.replace('</p>', "")
+        str = str.replace('\n', "")
+        standardized.append(str)
+
+    return standardized
 
 
 class AbdSpiderSpider(scrapy.Spider):
@@ -47,39 +105,46 @@ class AbdSpiderSpider(scrapy.Spider):
         return desc
 
     def getBudget(self, res):
-        amt = 0
+        amts = []
         innerTable = res.xpath('.//tr[6]/td[2]/table/tr')
         for each in innerTable:
             amtText = each.xpath('.//td[2]/text()').get()
             if(amtText is not None):
                 amtText = amtText[4:]
-                if("million" in amtText):
-                    amtText = amtText[:amtText.index("million")].strip().replace(",", "")
-                    amt += float(amtText)*1000000
-                else:
-                    amtText = amtText.strip().replace(",", "")
-                    amt += float(amtText)
+                amts.append(amtText)
+                # if("million" in amtText):
+                #     amtText = amtText[:amtText.index("million")].strip().replace(",", "")
+                #     amt += float(amtText)*1000000
+                # else:
+                #     amtText = amtText.strip().replace(",", "")
+                #     amt += float(amtText)
+        return clean_budget(amts)
         # logging.debug(amt)
         # logging.debug(innerTable)
         # num = res.xpath('/tr/td[2]')
         # logging.debug(len(num))
-        return amt
     
     def getSectorsAndSubsectors(self, res):
         list = res.xpath('.//tr[9]/td[2]/p')
+        rawData = []
         sec = []
         subsec = []
         for each in list:
             str = each.get()
-            str = str.replace('<p><strong class="sector">', "")
-            str = str.replace('</strong>', "")
-            str = str.replace('</p>', "")
-            str = str.replace('\n', "")
-            sec.append(str[:str.index("/")].strip())
-            subsec.append(str[str.index("/")+1:].strip())
+            rawData.append(str)
+            
+            # str = str.replace('<p><strong class="sector">', "")
+            # str = str.replace('</strong>', "")
+            # str = str.replace('</p>', "")
+            # str = str.replace('\n', "")
+            # sec.append(str[:str.index("/")].strip())
+            # subsec.append(str[str.index("/")+1:].strip())
+        
+        standardized = sector_subsector_standardisation(rawData)
+        return sector_subsector_seperation(standardized)
             # sec.append(each.xpath('.//strong/text()').get())
             # subsec.append(each.xpath('.//text()').get()[3:])
-        return sec, subsec
+        # return sec, subsec
     
     def getDocUrls(self, res):
         urls = []
@@ -92,54 +157,37 @@ class AbdSpiderSpider(scrapy.Spider):
         return urls
 
     def getDates(self, res):
-        monthMapping = {'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6, 'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12}
+        # monthMapping = {'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6, 'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12}
         datesUnformated = {}
-        datesFormated = {}
         timetable = res.xpath('.//div[@id="tabs-0"]/div[contains(@class, "tabs-panel")][2]/div/div/div/table[./tr[1]/th/text() = "Timetable"]')
         dateRows = timetable.xpath('.//tr[position() > 1]')
         for each in dateRows:
             datesUnformated[each.xpath('.//td[1]/text()').get()] = each.xpath('.//td[2]/text()').get()
         
-        for key, value in datesUnformated.items():
-            # logging.debug(value.strip())
-            if(len(value) > (2+1+3+1+4)):
-                # logging.debug(value)
-                # logging.debug(value[:(2+1+3+1+4)])
-                # logging.debug(value[-(2+1+3+1+4):])
-                d = dt.strptime(value[:(2+1+3+1+4)], r'%d %b %Y')
-                logging.debug(d)
-                datesFormated[key.lower().replace(" ", "_")+"_start"] = d.strftime(r'%Y-%m-%d %H:%M:%S')
-                d = dt.strptime(value[-(2+1+3+1+4):], r'%d %b %Y')
-                logging.debug(d)
-                datesFormated[key.lower().replace(" ", "_")+"_end"] = d.strftime(r'%Y-%m-%d %H:%M:%S')
-            elif (len(value) < (2+1+3+1+4)):
-                pass
-            else:
-                d = dt.strptime(value, r'%d %b %Y')
-                logging.debug(d)
-                datesFormated[key.lower().replace(" ", "_")] = d.strftime(r'%Y-%m-%d %H:%M:%S')
-        logging.debug(datesUnformated)
-        return datesFormated
+        return clean_dates(datesUnformated)
+        
+        # for key, value in datesUnformated.items():
+        #     # logging.debug(value.strip())
+        #     if(len(value) > (2+1+3+1+4)):
+        #         # logging.debug(value)
+        #         # logging.debug(value[:(2+1+3+1+4)])
+        #         # logging.debug(value[-(2+1+3+1+4):])
+        #         d = dt.strptime(value[:(2+1+3+1+4)], r'%d %b %Y')
+        #         logging.debug(d)
+        #         datesFormated[key.lower().replace(" ", "_")+"_start"] = d.strftime(r'%Y-%m-%d %H:%M:%S')
+        #         d = dt.strptime(value[-(2+1+3+1+4):], r'%d %b %Y')
+        #         logging.debug(d)
+        #         datesFormated[key.lower().replace(" ", "_")+"_end"] = d.strftime(r'%Y-%m-%d %H:%M:%S')
+        #     elif (len(value) < (2+1+3+1+4)):
+        #         pass
+        #     else:
+        #         d = dt.strptime(value, r'%d %b %Y')
+        #         logging.debug(d)
+        #         datesFormated[key.lower().replace(" ", "_")] = d.strftime(r'%Y-%m-%d %H:%M:%S')
+        # logging.debug(datesUnformated)
+        # return datesFormated
     
     def parse_info(self, response):
-        # numberOfDetails = len(response.xpath('//div[@id="tabs-0"]/div[contains(@class, "tabs-panel")][1]/div/div[2]/div/div[2]/ul/li'))
-        # sectorsRes = response.xpath(f'//div[@id="tabs-0"]/div[contains(@class, "tabs-panel")][1]/div/div[2]/div/div[2]/ul/li[{numberOfDetails}]/span/ul/li')
-        # sectors = []
-        # for each in sectorsRes:
-        #     sectors.append(each.xpath('.//text()').get())
-
-        # # logging.debug(numberOfDetails)
-
-        # projectDetails = {
-        #     "status": response.request.meta['status'],
-        #     "approvalDate": response.request.meta['approvalDate'],
-        #     "link": response.request.meta['link'],
-        #     "title": response.request.meta['title'],
-        #     "summary": response.request.meta['summary'],
-        #     "projectOfficer": response.xpath('//div[@id="tabs-0"]/div[contains(@class, "tabs-panel")][1]/div/div[2]/div/div[2]/ul/li[1]/span/strong[2]/text()').get(),
-        #     "country": response.xpath(f'//div[@id="tabs-0"]/div[contains(@class, "tabs-panel")][1]/div/div[2]/div/div[2]/ul/li[{numberOfDetails-1}]/span/text()[2]') .get(),
-        #     "sectors": sectors,
-        # }
 
         # tabs
         table1 = response.xpath('//div[@id="tabs-0"]/div[contains(@class, "tabs-panel")][2]/div/div/div/table[1]')
