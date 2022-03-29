@@ -125,7 +125,9 @@ class Scraper():
                             pub_date.append(proc)
 
             print("Data has successfully been cleaned")
-            features= dict(bid_title=bid_title,contract_location=contract_location,procurement=procurement,notice_status=notice_status,closing_date=closing_date,contract_value=contract_value,location=location,pub_date=pub_date)
+            features= dict(bid_title=bid_title,contract_location=contract_location,\
+                           procurement=procurement,notice_status=notice_status,closing_date=closing_date,\
+                           contract_value=contract_value,location=location,pub_date=pub_date)
             return features
 
         except Exception as e:
