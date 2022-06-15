@@ -1,0 +1,8 @@
+Please run the taiyo-assignment_BIS.py file
+
+For each step you will get the notification if the step is completed or not
+
+Once completed look in the current folder for the following
+
+1. master_data.csv -> this contains the list of name and url from the BIS site
+2. csv folder which contains all the csv files timestamped
