@@ -1,0 +1,7 @@
+Please run the uktender.ipynb file
+
+For each step you will get the notification if the step is completed or not
+
+Once completed look in the data folder for the details of the tenders extracted
+
+1. uktender.csv -> this contains all the cleaned details of all the tenders from the website "https://www.contractsfinder.service.gov.uk/Search"
