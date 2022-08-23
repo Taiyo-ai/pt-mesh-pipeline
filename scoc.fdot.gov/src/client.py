@@ -19,7 +19,7 @@ config = {
 
     # path configurations
     "path_config": {
-        "meta_data_path": "rel_path",
+        "meta_data_path": os.getcwd() + "/data/meta_data",
         "raw_data_path": os.getcwd() + "/data/raw_data",
         "cleaned_data_path": os.getcwd() + "/data/cleaned_data",
         "geocoded_data_path": os.getcwd() + "/data/geocoded_data",
@@ -32,28 +32,28 @@ config = {
 def step_1():
     obj = metaScraper(config=config)
     obj.run()
-    logging.info("Standardized Geocoded Data")
+    logging.info("Scraped Metadata")
 
 def step_2():
     obj = Scraper(config=config)
     obj.run()
-    logging.info("Scraped Metadata")
+    logging.info("Scraped Main Data")
 
 
 def step_3():
     obj = Cleaner(config=config)
     obj.run()
-    logging.info("Scraped Main Data")
+    logging.info("Cleaned Main Data")
 
 def step_4():
     obj = Geocoder(config=config)
     obj.run()
-    logging.info("Cleaned Main Data")
+    logging.info("Geocoded Cleaned Data")
 
 def step_5():
     obj = Standardizer(config=config)
     obj.run()
-    logging.info("Geocoded Cleaned Data")
+    logging.info("Standardized Geocoded Data")
 
 
 if __name__ == "__main__":
