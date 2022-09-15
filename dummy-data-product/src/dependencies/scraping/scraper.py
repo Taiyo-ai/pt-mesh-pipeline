@@ -55,9 +55,9 @@ class Scrapper:
       # Fetching all items
       list_all_tenders = soup.find_all("div", {"class" : "search-result"})
       for tenders in list_all_tenders:
-        data = self.get_tenders_attributes(tenders)
+        self.get_tenders_attributes(tenders)
     next_page_text = soup.find('ul', class_="gadget-footer-paginate").findAll('li')[-1].text
-    if 'Next' in next_page_text and not '25' in next_page_text:
+    if 'Next' in next_page_text:
         next_page_partial = soup.find('ul', class_="gadget-footer-paginate").findAll('li')[-1].find('a')['href']
         self.parse_page(next_page_partial)
     else:
