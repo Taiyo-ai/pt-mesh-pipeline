@@ -1,0 +1,20 @@
+
+import pandas as pd
+import requests,openpyxl
+
+excel=openpyxl.Workbook()
+print(excel.sheetnames)
+sheet1=excel.active
+sheet1.title='AmalBParamban-scrape'
+print(excel.sheetnames)
+sheet1.append(['Event ID','End Date'])
+
+URL = "https://dot.ca.gov/programs/procurement-and-contracts/contracts-out-for-bid"
+tables = pd.read_html(URL)
+print("There are : ",len(tables)," tables")
+print("Take look at table 0")
+print(tables[0])
+
+
+excel.save('AmalBParamban-scrape.csv')
+
