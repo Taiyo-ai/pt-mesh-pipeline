@@ -41,7 +41,7 @@ if __name__ == "__main__":
             f"https://www.contractsfinder.service.gov.uk/Search/Results?&page={i}#dashboard_notices"
         )
     # Adjust the number of pages here as per requirement.
-    num_pages = 1
+    num_pages = 20
     lst = scraper_function.url_extract(url_list[:num_pages])
     print("Starting the extraction process.")
     # Opening the CSV Writer and passing it to the threads for saving the data to csv file.
@@ -51,7 +51,7 @@ if __name__ == "__main__":
         csvwriter.writeheader()
         # Using Concurrent.futures to improve the execution speed. (Set max_workers according to the system.)
         # Here I have tested with 20 workers and it worked just fine.
-        with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
             proc = list(
                 executor.map(scraper_function.data_extract, lst, repeat(csvwriter))
             )

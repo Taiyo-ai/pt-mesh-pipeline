@@ -80,7 +80,6 @@ def data_extract(url, writer):
 
     except Exception as e:
         logging.error("Exception occurred during data_extract.", exc_info=True)
-        print(url)
     return data
 
 
