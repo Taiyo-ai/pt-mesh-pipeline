@@ -1,0 +1,62 @@
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: epicanc3-cron-wf
+  namespace: %ENV%
+spec:
+  serviceAccountName: workflow
+  schedule: "00 20 * * *"
+  concurrencyPolicy: "Replace"
+  startingDeadlineSeconds: 0
+  successfulJobsHistoryLimit: 10
+  workflowSpec:
+    serviceAccountName: workflow
+    entrypoint: diamond
+    templates:
+    - name: epicanc
+      inputs:
+        parameters:
+        - name: step
+      container:
+        image: 965994533236.dkr.ecr.eu-west-3.amazonaws.com/projects_epi_can_central/ingestion:%TAG%
+        command: ["python3", "client2018.py", "--step", "{{inputs.parameters.step}}"]
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aws-key
+              key: username
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-key
+              key: password
+    - name: diamond
+      dag:
+        tasks:
+        - name: MainScraper
+          dependencies: []
+          template: epicanc
+          arguments:
+            parameters: [{name: step, value: 1}]
+        - name: Cleaner
+          dependencies: [MainScraper]
+          template: epicanc
+          arguments:
+            parameters: [{name: step, value: 2}]
+        - name: Geocoder
+          dependencies: [Cleaner]
+          template: epicanc
+          arguments:
+            parameters: [{name: step, value: 3}]
+        - name: Standardizer
+          dependencies: [Geocoder]
+          template: epicanc
+          arguments:
+            parameters: [{name: step, value: 4}]
+        - name: ElasticSearchIngestion
+          dependencies: [Standardizer]
+          template: epicanc
+          arguments:
+            parameters: [{name: step, value: 5}]
+

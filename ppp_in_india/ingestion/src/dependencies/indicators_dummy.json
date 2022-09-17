@@ -1,0 +1,230 @@
+{
+    "api_url": {
+        "description": "WorldBank PPI API endpoint for a project",
+        "unit": "None"
+    },
+    "aug_id": {
+        "description": "Taiyo generated unique ID which is source+original_id",
+        "unit": "string"
+    },
+    "award_method": {
+        "description": "Award Method",
+        "unit": "string"
+    },
+    "bid_criteria": {
+        "description": "Bid Criteria",
+        "unit": "string"
+    },
+    "bilateral": {
+        "description": "Bilateral Support",
+        "unit": "bool"
+    },
+    "budget": {
+        "description": "Funds invested in a project",
+        "unit": "USD"
+    },
+    "capacity_type_name": {
+        "description": "Capacity Type Name or Unit",
+        "unit": "string"
+    },
+    "capacity_value": {
+        "description": "Capacity Value",
+        "unit": "capacity_type_name"
+    },
+    "company": {
+        "description": "Company name to which project is awarded",
+        "unit": "string"
+    },
+    "contract_period": {
+        "description": "Contract Period",
+        "unit": "years"
+    },
+    "country_code": {
+        "description": "ISO3 country code",
+        "unit": "string"
+    },
+    "country_name": {
+        "description": "Short name of the country",
+        "unit": "string"
+    },
+    "description": {
+        "description": "Project description",
+        "unit": "string"
+    },
+    "description_of_source": {
+        "description": "Description of project source",
+        "unit": "string"
+    },
+    "estimated_financial_closure_year": {
+        "description": "Estimated financial closure year",
+        "unit": "string"
+    },
+    "financial_closure_month": {
+        "description": "Financial Closure month",
+        "unit": "string"
+    },
+    "financial_closure_year": {
+        "description": "Financial Closure Year",
+        "unit": "None"
+    },
+    "govt_lvl_granting": {
+        "description": "Government Level Granting",
+        "unit": "string"
+    },
+    "identified_sector": {
+        "description": "Identified sector",
+        "unit": "string"
+    },
+    "identified_subsector": {
+        "description": "Identified subsector",
+        "unit": "string"
+    },
+    "identified_sector_subsector_tuple": {
+        "description": "Identified sector and subsector tuple",
+        "unit": "List[Tuple(str,str)]"
+    },
+    "investment_history": {
+        "description": "Investment History",
+        "unit": "List[dict]"
+    },
+    "location": {
+        "description": "Project Location",
+        "unit": "string"
+    },
+    "location_label": {
+        "description": "Project Location Label",
+        "unit": "string"
+    },
+    "main_revenue_source": {
+        "description": "Main Revenue Source",
+        "unit": "string"
+    },
+    "map_coordinates": {
+        "description": "Map Coordinates - Lat,Long",
+        "unit": "string"
+    },
+    "multi_lateral_support": {
+        "description": "Multi Lateral Support",
+        "unit": "bool"
+    },
+    "name": {
+        "description": "Project Name",
+        "unit": "string"
+    },
+    "number_of_bids": {
+        "description": "Number of bids",
+        "unit": "None"
+    },
+    "original_id": {
+        "description": "Project Identifier used by WBPPI",
+        "unit": "None"
+    },
+    "other_revenue_source": {
+        "description": "Other sources of revenue",
+        "unit": "string"
+    },
+    "ppi_subtype": {
+        "description": "PPI subtype",
+        "unit": "string"
+    },
+    "ppi_type": {
+        "description": "PPI type",
+        "unit": "string"
+    },
+    "project_or_tender": {
+        "description": "Descriptor tag to identify wheter the document is a project or tender",
+        "unit": "string"
+    },
+    "public_disclosure": {
+        "description": "Public Disclosure",
+        "unit": "bool"
+    },
+    "region_code": {
+        "description": "ISO3 region code",
+        "unit": "string"
+    },
+    "region_name": {
+        "description": "Region in which project is located",
+        "unit": "string"
+    },
+    "related_name": {
+        "description": "Secondary or other name for the project",
+        "unit": "string"
+    },
+    "related_projects": {
+        "description": "Related projects",
+        "unit": "list"
+    },
+    "sector": {
+        "description": "Project Sector",
+        "unit": "string"
+    },
+    "segment": {
+        "description": "Project subsector segment",
+        "unit": "string"
+    },
+    "source": {
+        "description": "Source abbreviation",
+        "unit": "string"
+    },
+    "sponsor": {
+        "description": "Project Sponsors Name",
+        "unit": "string"
+    },
+    "status": {
+        "description": "Project Status",
+        "unit": "string"
+    },
+    "status_update_date": {
+        "description": "Last Status update date",
+        "unit": "string"
+    },
+    "subsector": {
+        "description": "Project Subsector",
+        "unit": "string"
+    },
+    "technology": {
+        "description": "Project Technology",
+        "unit": "string"
+    },
+    "termination_year": {
+        "description": "Project terminated by year",
+        "unit": "year"
+    },
+    "third_party_support": {
+        "description": "Third Party Support",
+        "unit": "List[dict]"
+    },
+    "total_equity": {
+        "description": "Total Equity",
+        "unit": "string"
+    },
+    "total_ownership": {
+        "description": "Total Ownership",
+        "unit": "percent"
+    },
+    "type_of_direct_govt_support": {
+        "description": "Type of Direct Government Support",
+        "unit": "string"
+    },
+    "type_of_direct_govt_support_value": {
+        "description": "Type of Direct Government Support Value",
+        "unit": "USD"
+    },
+    "type_of_indirect_govt_support": {
+        "description": "Type of Indirect Government Support",
+        "unit": "string"
+    },
+    "type_of_indirect_govt_support_value": {
+        "description": "Type of Indirect Government Support Value",
+        "unit": "USD"
+    },
+    "unsolicited_proposal": {
+        "description": "Unsolicited Proposal",
+        "unit": "bool"
+    },
+    "url": {
+        "description": "Microsite link to project page",
+        "unit": "string"
+    }
+}

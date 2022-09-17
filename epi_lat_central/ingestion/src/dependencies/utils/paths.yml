@@ -1,0 +1,18 @@
+metadata:
+    description: Contains relative paths to Google Cloud Storage Bucket for different sources to be harvested
+    bucket_name: psd_data
+
+paths:
+    EPILATC:
+        base_data_path: None
+        master_data_path: projects/epilatc/raw/epilatc_master_data.csv 
+        cleaned_data_path: projects/epilatc/cleaned/epilatc_cleaned_data.csv   
+        geocoded_data_path: projects/epilatc/geocoded/epilatc_geocoded_data.csv
+        standardized_data_path: projects/epilatc/standardized/epilatc_standardized_data.csv
+        embeddings_path: projects/epilatc/embeddings
+        metadata_path: projects/epilatc/metadata/metadata.json
+
+location_mapping_paths:
+    official_names: 'location_metadata/Official country names.xlsx'
+    region_and_income_group: 'location_metadata/Region and income group.xlsx'
+    country_latlon: "location_metadata/country_latlon.json"

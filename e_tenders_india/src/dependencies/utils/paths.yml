@@ -1,0 +1,19 @@
+metadata:
+    description: Contains relative paths to Google Cloud Storage Bucket for different sources to be harvested
+    bucket_name: psd_data
+
+paths:
+    ETENDERSINDIA:
+        reference_urls_path: projects/etendersindia/metadata/project_ids_urls.csv
+        base_data_path: projects/etendersindia/metadata/etendersindia_base_data.csv
+        successful_urls_path: projects/etendersindia/metadata/etendersindia_success_urls.csv
+        failed_urls_path: projects/etendersindia/metadata/etendersindia_failed_urls.csv
+        master_data_path: projects/etendersindia/raw/etendersindia_master_data.csv
+        cleaned_data_path: projects/etendersindia/cleaned/etendersindia_cleaned_data.csv
+        geocoded_data_path: projects/etendersindia/geocoded/etendersindia_geocoded_data.csv
+        standardised_data_path: projects/etendersindia/standardised/etendersindia_standardised_data.csv
+        metadata_path: projects/etendersindia/metadata/metadata.json
+
+location_mapping_paths:
+    official_names: 'location_metadata/Official country names.xlsx'
+    region_and_income_group: 'location_metadata/Region and income group.xlsx'
