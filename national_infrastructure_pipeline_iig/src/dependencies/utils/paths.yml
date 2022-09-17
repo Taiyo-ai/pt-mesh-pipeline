@@ -1,0 +1,45 @@
+metadata:
+    description: Contains relative paths to Google Cloud Storage Bucket for different sources to be harvested
+    bucket_name: psd_data
+
+paths:
+    IIG:
+        reference_urls_path: projects/iig/metadata/project_ids_urls.csv
+        base_data_path: projects/iig/metadata/iig_base_data.csv
+        successful_urls_path: projects/iig/metadata/iig_success_urls.csv
+        failed_urls_path: projects/iig/metadata/iig_failed_urls.csv
+        master_data_path: projects/iig/raw/iig_master_data.csv
+        cleaned_data_path: projects/iig/cleaned/iig_cleaned_data.csv  
+        standardized_data_path: projects/iig/standardized/iig_standardized_data.csv
+        geocoded_data_path: projects/iig/geocoded/iig_geocoded_data.csv
+        metadata_path: projects/iig/metadata/metadata.json
+
+    IIG_Assets:
+        reference_urls_path: projects/iig_assets/metadata/project_ids_urls.csv
+        base_data_path: projects/iig_assets/metadata/iig_base_data.csv
+        successful_urls_path: projects/iig_assets/metadata/iig_success_urls.csv
+        failed_urls_path: projects/iig_assets/metadata/iig_failed_urls.csv
+        master_data_path: projects/iig_assets/raw/iig_master_data.csv
+        cleaned_data_path: projects/iig_assets/cleaned/iig_cleaned_data.csv 
+        standardized_data_path: projects/iig_assets/standardized/iig_standardized_data.csv
+        geocoded_data_path: projects/iig_assets/geocoded/iig_geocoded_data.csv
+        metadata_path: projects/iig_assets/metadata/metadata.json
+
+    IIG_CSR:
+        reference_urls_path: projects/iig_csr/metadata/project_ids_urls.csv
+        base_data_path: projects/iig_csr/metadata/iig_base_data.csv
+        successful_urls_path: projects/iig_csr/metadata/iig_success_urls.csv
+        failed_urls_path: projects/iig_csr/metadata/iig_failed_urls.csv
+        master_data_path: projects/iig_csr/raw/iig_master_data.csv
+        cleaned_data_path: projects/iig_csr/cleaned/iig_cleaned_data.csv   
+        standardized_data_path: projects/iig_csr/standardized/iig_csr_data.csv
+        geocoded_data_path: projects/iig_csr/geocoded/iig_geocoded_data.csv
+        metadata_path: projects/iig_csr/metadata/metadata.json 
+
+
+location_mapping_paths:
+    official_names: 'location_metadata/Official country names.xlsx'
+    region_and_income_group: 'location_metadata/Region and income group.xlsx'
+
+entities_mapping_paths:
+    list_of_entities: 'entities_metadata/entities.csv'

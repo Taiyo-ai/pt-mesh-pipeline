@@ -1,0 +1,574 @@
+{
+  "description": {
+    "description": "Description",
+    "unit": "None"
+  },
+  "name": {
+    "description": "Name",
+    "unit": "None"
+  },
+  "original_id": {
+    "description": "Original Id",
+    "unit": "None"
+  },
+  "url": {
+    "description": "Url",
+    "unit": "None"
+  },
+  "sector": {
+    "description": "Sector",
+    "unit": "None"
+  },
+  "subsector": {
+    "description": "Subsector",
+    "unit": "None"
+  },
+  "company_type": {
+    "description": "Company Type",
+    "unit": "None"
+  },
+  "type": {
+    "description": "Type",
+    "unit": "None"
+  },
+  "employees": {
+    "description": "Employees",
+    "unit": "None"
+  },
+  "location": {
+    "description": "Location",
+    "unit": "None"
+  },
+  "website": {
+    "description": "Website",
+    "unit": "None"
+  },
+  "key_products/services": {
+    "description": "Key Products/Services",
+    "unit": "None"
+  },
+  "key_resources/assets": {
+    "description": "Key Resources/Assets",
+    "unit": "None"
+  },
+  "commencement_of_cirp": {
+    "description": "Commencement Of Cirp",
+    "unit": "None"
+  },
+  "public_announcement_by_resolution_professional": {
+    "description": "Public Announcement By Resolution Professional",
+    "unit": "None"
+  },
+  "claim_submission": {
+    "description": "Claim Submission",
+    "unit": "None"
+  },
+  "invitation_for_expression_of_interest": {
+    "description": "Invitation For Expression Of Interest",
+    "unit": "None"
+  },
+  "submission_of_expression_of_interest": {
+    "description": "Submission Of Expression Of Interest",
+    "unit": "None"
+  },
+  "submission_of_resolution_plan": {
+    "description": "Submission Of Resolution Plan",
+    "unit": "None"
+  },
+  "committee_of_creditors_approval": {
+    "description": "Committee Of Creditors Approval",
+    "unit": "None"
+  },
+  "submission_of_resolution_plan_to_nclt": {
+    "description": "Submission Of Resolution Plan To Nclt",
+    "unit": "None"
+  },
+  "approval_of_resolution_plan_by_nclt": {
+    "description": "Approval Of Resolution Plan By Nclt",
+    "unit": "None"
+  },
+  "opportunity_highlights": {
+    "description": "Opportunity Highlights",
+    "unit": "None"
+  },
+  "amount": {
+    "description": "Amount",
+    "unit": "None"
+  },
+  "links": {
+    "description": "Links",
+    "unit": "None"
+  },
+  "last_updated_date": {
+    "description": "Last Updated Date",
+    "unit": "None"
+  },
+  "revenue_(in_inr_crores)_2010": {
+    "description": "Revenue (In Inr Crores) 2010",
+    "unit": "None"
+  },
+  "net_income_(in_inr_crores)_2010": {
+    "description": "Net Income (In Inr Crores) 2010",
+    "unit": "None"
+  },
+  "liabilities_(in_inr_crores)_2010": {
+    "description": "Liabilities (In Inr Crores) 2010",
+    "unit": "None"
+  },
+  "fixed_&_current_assets_(in_inr_crores)_2010": {
+    "description": "Fixed & Current Assets (In Inr Crores) 2010",
+    "unit": "None"
+  },
+  "current_ratio_2010": {
+    "description": "Current Ratio 2010",
+    "unit": "None"
+  },
+  "quick_ratio_2010": {
+    "description": "Quick Ratio 2010",
+    "unit": "None"
+  },
+  "roe_2010": {
+    "description": "Roe 2010",
+    "unit": "None"
+  },
+  "roa_2010": {
+    "description": "Roa 2010",
+    "unit": "None"
+  },
+  "ebitda_margin_2010": {
+    "description": "Ebitda Margin 2010",
+    "unit": "None"
+  },
+  "pat_margin_2010": {
+    "description": "Pat Margin 2010",
+    "unit": "None"
+  },
+  "revenue_(in_inr_crores)_2011": {
+    "description": "Revenue (In Inr Crores) 2011",
+    "unit": "None"
+  },
+  "net_income_(in_inr_crores)_2011": {
+    "description": "Net Income (In Inr Crores) 2011",
+    "unit": "None"
+  },
+  "liabilities_(in_inr_crores)_2011": {
+    "description": "Liabilities (In Inr Crores) 2011",
+    "unit": "None"
+  },
+  "fixed_&_current_assets_(in_inr_crores)_2011": {
+    "description": "Fixed & Current Assets (In Inr Crores) 2011",
+    "unit": "None"
+  },
+  "current_ratio_2011": {
+    "description": "Current Ratio 2011",
+    "unit": "None"
+  },
+  "quick_ratio_2011": {
+    "description": "Quick Ratio 2011",
+    "unit": "None"
+  },
+  "roe_2011": {
+    "description": "Roe 2011",
+    "unit": "None"
+  },
+  "roa_2011": {
+    "description": "Roa 2011",
+    "unit": "None"
+  },
+  "ebitda_margin_2011": {
+    "description": "Ebitda Margin 2011",
+    "unit": "None"
+  },
+  "pat_margin_2011": {
+    "description": "Pat Margin 2011",
+    "unit": "None"
+  },
+  "revenue_(in_inr_crores)_2012": {
+    "description": "Revenue (In Inr Crores) 2012",
+    "unit": "None"
+  },
+  "net_income_(in_inr_crores)_2012": {
+    "description": "Net Income (In Inr Crores) 2012",
+    "unit": "None"
+  },
+  "liabilities_(in_inr_crores)_2012": {
+    "description": "Liabilities (In Inr Crores) 2012",
+    "unit": "None"
+  },
+  "fixed_&_current_assets_(in_inr_crores)_2012": {
+    "description": "Fixed & Current Assets (In Inr Crores) 2012",
+    "unit": "None"
+  },
+  "current_ratio_2012": {
+    "description": "Current Ratio 2012",
+    "unit": "None"
+  },
+  "quick_ratio_2012": {
+    "description": "Quick Ratio 2012",
+    "unit": "None"
+  },
+  "roe_2012": {
+    "description": "Roe 2012",
+    "unit": "None"
+  },
+  "roa_2012": {
+    "description": "Roa 2012",
+    "unit": "None"
+  },
+  "ebitda_margin_2012": {
+    "description": "Ebitda Margin 2012",
+    "unit": "None"
+  },
+  "pat_margin_2012": {
+    "description": "Pat Margin 2012",
+    "unit": "None"
+  },
+  "revenue_(in_inr_crores)_2015": {
+    "description": "Revenue (In Inr Crores) 2015",
+    "unit": "None"
+  },
+  "net_income_(in_inr_crores)_2015": {
+    "description": "Net Income (In Inr Crores) 2015",
+    "unit": "None"
+  },
+  "liabilities_(in_inr_crores)_2015": {
+    "description": "Liabilities (In Inr Crores) 2015",
+    "unit": "None"
+  },
+  "fixed_&_current_assets_(in_inr_crores)_2015": {
+    "description": "Fixed & Current Assets (In Inr Crores) 2015",
+    "unit": "None"
+  },
+  "current_ratio_2015": {
+    "description": "Current Ratio 2015",
+    "unit": "None"
+  },
+  "quick_ratio_2015": {
+    "description": "Quick Ratio 2015",
+    "unit": "None"
+  },
+  "roe_2015": {
+    "description": "Roe 2015",
+    "unit": "None"
+  },
+  "roa_2015": {
+    "description": "Roa 2015",
+    "unit": "None"
+  },
+  "ebitda_margin_2015": {
+    "description": "Ebitda Margin 2015",
+    "unit": "None"
+  },
+  "pat_margin_2015": {
+    "description": "Pat Margin 2015",
+    "unit": "None"
+  },
+  "revenue_(in_inr_crores)_2016": {
+    "description": "Revenue (In Inr Crores) 2016",
+    "unit": "None"
+  },
+  "net_income_(in_inr_crores)_2016": {
+    "description": "Net Income (In Inr Crores) 2016",
+    "unit": "None"
+  },
+  "liabilities_(in_inr_crores)_2016": {
+    "description": "Liabilities (In Inr Crores) 2016",
+    "unit": "None"
+  },
+  "fixed_&_current_assets_(in_inr_crores)_2016": {
+    "description": "Fixed & Current Assets (In Inr Crores) 2016",
+    "unit": "None"
+  },
+  "current_ratio_2016": {
+    "description": "Current Ratio 2016",
+    "unit": "None"
+  },
+  "quick_ratio_2016": {
+    "description": "Quick Ratio 2016",
+    "unit": "None"
+  },
+  "roe_2016": {
+    "description": "Roe 2016",
+    "unit": "None"
+  },
+  "roa_2016": {
+    "description": "Roa 2016",
+    "unit": "None"
+  },
+  "ebitda_margin_2016": {
+    "description": "Ebitda Margin 2016",
+    "unit": "None"
+  },
+  "pat_margin_2016": {
+    "description": "Pat Margin 2016",
+    "unit": "None"
+  },
+  "revenue_(in_inr_crores)_2017": {
+    "description": "Revenue (In Inr Crores) 2017",
+    "unit": "None"
+  },
+  "net_income_(in_inr_crores)_2017": {
+    "description": "Net Income (In Inr Crores) 2017",
+    "unit": "None"
+  },
+  "liabilities_(in_inr_crores)_2017": {
+    "description": "Liabilities (In Inr Crores) 2017",
+    "unit": "None"
+  },
+  "fixed_&_current_assets_(in_inr_crores)_2017": {
+    "description": "Fixed & Current Assets (In Inr Crores) 2017",
+    "unit": "None"
+  },
+  "current_ratio_2017": {
+    "description": "Current Ratio 2017",
+    "unit": "None"
+  },
+  "quick_ratio_2017": {
+    "description": "Quick Ratio 2017",
+    "unit": "None"
+  },
+  "roe_2017": {
+    "description": "Roe 2017",
+    "unit": "None"
+  },
+  "roa_2017": {
+    "description": "Roa 2017",
+    "unit": "None"
+  },
+  "ebitda_margin_2017": {
+    "description": "Ebitda Margin 2017",
+    "unit": "None"
+  },
+  "pat_margin_2017": {
+    "description": "Pat Margin 2017",
+    "unit": "None"
+  },
+  "revenue_(in_inr_crores)_2018": {
+    "description": "Revenue (In Inr Crores) 2018",
+    "unit": "None"
+  },
+  "net_income_(in_inr_crores)_2018": {
+    "description": "Net Income (In Inr Crores) 2018",
+    "unit": "None"
+  },
+  "liabilities_(in_inr_crores)_2018": {
+    "description": "Liabilities (In Inr Crores) 2018",
+    "unit": "None"
+  },
+  "fixed_&_current_assets_(in_inr_crores)_2018": {
+    "description": "Fixed & Current Assets (In Inr Crores) 2018",
+    "unit": "None"
+  },
+  "current_ratio_2018": {
+    "description": "Current Ratio 2018",
+    "unit": "None"
+  },
+  "quick_ratio_2018": {
+    "description": "Quick Ratio 2018",
+    "unit": "None"
+  },
+  "roe_2018": {
+    "description": "Roe 2018",
+    "unit": "None"
+  },
+  "roa_2018": {
+    "description": "Roa 2018",
+    "unit": "None"
+  },
+  "ebitda_margin_2018": {
+    "description": "Ebitda Margin 2018",
+    "unit": "None"
+  },
+  "pat_margin_2018": {
+    "description": "Pat Margin 2018",
+    "unit": "None"
+  },
+  "revenue_(in_inr_crores)_2019": {
+    "description": "Revenue (In Inr Crores) 2019",
+    "unit": "None"
+  },
+  "net_income_(in_inr_crores)_2019": {
+    "description": "Net Income (In Inr Crores) 2019",
+    "unit": "None"
+  },
+  "liabilities_(in_inr_crores)_2019": {
+    "description": "Liabilities (In Inr Crores) 2019",
+    "unit": "None"
+  },
+  "fixed_&_current_assets_(in_inr_crores)_2019": {
+    "description": "Fixed & Current Assets (In Inr Crores) 2019",
+    "unit": "None"
+  },
+  "current_ratio_2019": {
+    "description": "Current Ratio 2019",
+    "unit": "None"
+  },
+  "quick_ratio_2019": {
+    "description": "Quick Ratio 2019",
+    "unit": "None"
+  },
+  "roe_2019": {
+    "description": "Roe 2019",
+    "unit": "None"
+  },
+  "roa_2019": {
+    "description": "Roa 2019",
+    "unit": "None"
+  },
+  "ebitda_margin_2019": {
+    "description": "Ebitda Margin 2019",
+    "unit": "None"
+  },
+  "pat_margin_2019": {
+    "description": "Pat Margin 2019",
+    "unit": "None"
+  },
+  "revenue_(in_inr_crores)_2014": {
+    "description": "Revenue (In Inr Crores) 2014",
+    "unit": "None"
+  },
+  "net_income_(in_inr_crores)_2014": {
+    "description": "Net Income (In Inr Crores) 2014",
+    "unit": "None"
+  },
+  "liabilities_(in_inr_crores)_2014": {
+    "description": "Liabilities (In Inr Crores) 2014",
+    "unit": "None"
+  },
+  "fixed_&_current_assets_(in_inr_crores)_2014": {
+    "description": "Fixed & Current Assets (In Inr Crores) 2014",
+    "unit": "None"
+  },
+  "current_ratio_2014": {
+    "description": "Current Ratio 2014",
+    "unit": "None"
+  },
+  "quick_ratio_2014": {
+    "description": "Quick Ratio 2014",
+    "unit": "None"
+  },
+  "roe_2014": {
+    "description": "Roe 2014",
+    "unit": "None"
+  },
+  "roa_2014": {
+    "description": "Roa 2014",
+    "unit": "None"
+  },
+  "ebitda_margin_2014": {
+    "description": "Ebitda Margin 2014",
+    "unit": "None"
+  },
+  "pat_margin_2014": {
+    "description": "Pat Margin 2014",
+    "unit": "None"
+  },
+  "revenue_(in_inr_crores)_2013": {
+    "description": "Revenue (In Inr Crores) 2013",
+    "unit": "None"
+  },
+  "net_income_(in_inr_crores)_2013": {
+    "description": "Net Income (In Inr Crores) 2013",
+    "unit": "None"
+  },
+  "liabilities_(in_inr_crores)_2013": {
+    "description": "Liabilities (In Inr Crores) 2013",
+    "unit": "None"
+  },
+  "fixed_&_current_assets_(in_inr_crores)_2013": {
+    "description": "Fixed & Current Assets (In Inr Crores) 2013",
+    "unit": "None"
+  },
+  "current_ratio_2013": {
+    "description": "Current Ratio 2013",
+    "unit": "None"
+  },
+  "quick_ratio_2013": {
+    "description": "Quick Ratio 2013",
+    "unit": "None"
+  },
+  "roe_2013": {
+    "description": "Roe 2013",
+    "unit": "None"
+  },
+  "roa_2013": {
+    "description": "Roa 2013",
+    "unit": "None"
+  },
+  "ebitda_margin_2013": {
+    "description": "Ebitda Margin 2013",
+    "unit": "None"
+  },
+  "pat_margin_2013": {
+    "description": "Pat Margin 2013",
+    "unit": "None"
+  },
+  "data_source": {
+    "description": "Data Source",
+    "unit": "None"
+  },
+  "country_name": {
+    "description": "Country Name",
+    "unit": "None"
+  },
+  "country_code": {
+    "description": "Country Code",
+    "unit": "None"
+  },
+  "region_name": {
+    "description": "Region Name",
+    "unit": "None"
+  },
+  "region_code": {
+    "description": "Region Code",
+    "unit": "None"
+  },
+  "aug_id": {
+    "description": "Aug Id",
+    "unit": "None"
+  },
+  "project_or_tender": {
+    "description": "Project Or Tender",
+    "unit": "None"
+  },
+  "country": {
+    "description": "Country",
+    "unit": "None"
+  },
+  "state": {
+    "description": "State",
+    "unit": "None"
+  },
+  "county": {
+    "description": "County",
+    "unit": "None"
+  },
+  "locality": {
+    "description": "Locality",
+    "unit": "None"
+  },
+  "neighbourhood": {
+    "description": "Neighbourhood",
+    "unit": "None"
+  },
+  "map_coordinates": {
+    "description": "Map Coordinates",
+    "unit": "None"
+  },
+  "industry_info": {
+    "description": "Industry Info",
+    "unit": "None"
+  },
+  "identified_sector": {
+    "description": "Identified Sector",
+    "unit": "None"
+  },
+  "identified_subsector": {
+    "description": "Identified Subsector",
+    "unit": "None"
+  },
+  "identified_status": {
+    "description": "Identified Status",
+    "unit": "None"
+  }
+}
