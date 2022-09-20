@@ -36,20 +36,4 @@ df = pd.DataFrame(data3)
 
 df.to_csv('Assesment.csv')
 
-print('finish')
-    
-   
-    
-
-    
-    
-    
-    
-    
-    
-
-    
-   
-
-
-   
+print('finish')   
