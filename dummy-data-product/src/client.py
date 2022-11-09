@@ -1,50 +1,64 @@
-import dotenv
 import logging
 
 from datetime import datetime
 
 # Importing scraping and data processing modules
-# from dependencies.scraping.<file_name> import <class_name>
-# from dependencies.scraping.<file_name> import <class_name>
-# from dependencies.cleaning.<file_name> import <class_name>
-# from dependencies.geocoding.<file_name> import <class_name>
-# from dependencies.standardization.<file_name> import <class_name>
+from dependencies.scraping.scraper import Scraper
+from dependencies.cleaning.cleaning import CleanData
+from dependencies.standardization.standardizer import Standardize_data
 
-dotenv.load_dotenv(".env")
 logging.basicConfig(level=logging.INFO)
 
 
-# In each step create an object of the class, initialize the class with 
-# required configuration and call the run method 
-def step_1():
-    logging.info("Scraped Metadata")
+class FetchCSVfile:
+    def __init__(self, **kwargs):
+        self.config = kwargs.get('config')
 
+    def step1(self):
+        '''Load and Extract Data'''
+        extraction_obj = Scraper(config=self.config)
+        raw_extracted_data_path = extraction_obj.download_tenders()
+        return raw_extracted_data_path
 
-def step_2():
-    logging.info("Scraped Main Data")
+    def step2(self):
+        '''Clean the Extracted Data'''
+        regulating_obj = CleanData(config=self.regulating_config)
+        cleansed_files_path = regulating_obj.sanitize_csv_files()
+        return cleansed_files_path
 
+    def step3(self):
+        '''Merge all the cleansed files'''
+        st_obj = Standardize_data(cleaned_data=self.standardize_config)
+        st_obj.generate_standardize_data()
 
-def step_3():
-    logging.info("Cleaned Main Data")
+    def run(self):
+        self.regulating_config = self.step1()
+        self.regulating_config['country_code_conversion_cell_idx'] = self.config['country_code_conversion_cell_idx']
 
-
-def step_4():
-    logging.info("Geocoded Cleaned Data")
-
-
-def step_5():
-    logging.info("Standardized Geocoded Data")
+        self.standardize_config = self.step2()
+        self.step3()
 
 
 if __name__ == "__main__":
-    import argparse
+    config = {
+        'site_url': 'https://opentender.eu',
+        'scraping_url': 'https://opentender.eu/download',
+        'scarping_keywords': {
+            'parent_row': ('div', 'download-row'),
+            'country_name': ('h1', 'download-name'),
+            'download_link_class': 'download-column download-csv'
+        },
+        'path_config': {
+            'country_csv_url_map': r'dummy-data-product/src/dependencies/utils/country_csv_url_map.json'
+        },
+        'country_code_conversion_cell_idx': [2, 99, 136]
+    }
+    # Refer to "dependencies\utils\country_csv_url_map.json" for country names.
+    country_list = ['Malta', 'Cyprus']
+    config['country_list'] = country_list
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--step", help="step to be choosen for execution")
-
-    args = parser.parse_args()
-
-    eval(f"step_{args.step}()")
+    main_obj = FetchCSVfile(config=config)
+    main_obj.run()
 
     logging.info(
         {

@@ -1,7 +1,10 @@
 import csv
 import pycountry
 import os
+import logging
 
+
+logging.basicConfig(level=logging.INFO)
 
 class CleanData:
     def __init__(self, **kwargs):
@@ -28,20 +31,19 @@ class CleanData:
                 os.makedirs(output_dir_path)
 
             for filename in os.listdir(raw_data_dir_path):
-                csv_set = set()
                 with open('%s/%s' % (raw_data_dir_path, filename), 'r', encoding='utf-8') as file:
-                    loadedCsv = csv.reader(file, delimiter=';')
-                    for row in loadedCsv:
-                        row = self.replace_missing_values(self.convert_country_code(row))
-                    csv_set.add(tuple(row[1:]))     # Removing duplicate rows
+                    loadedCsv = list(csv.reader(file, delimiter=';'))
+                    for idx, row in enumerate(loadedCsv):
+                        loadedCsv[idx] = self.replace_missing_values(self.convert_country_code(row))[1:]
 
-                file_path = '%s/%s' % (output_dir_path, filename)
-                with open(file_path, 'w', encoding='utf-8', newline='') as outfile:
-                    csvwriter = csv.writer(outfile)
-                    csvwriter.writerows(csv_set)
+                    file_path = '%s/%s' % (output_dir_path, filename)
+                    with open(file_path, 'w', encoding='utf-8', newline='') as outfile:
+                        csvwriter = csv.writer(outfile)
+                        csvwriter.writerows(loadedCsv)
             if 'cleaned_data' not in self.config:
                 self.config['cleaned_data'] = dict()
             self.config['cleaned_data'][country] = output_dir_path
+            logging.info(f'Sanitized CSV files for {country}')
         return self.config['cleaned_data']
 
 
@@ -51,4 +53,3 @@ if __name__ == '__main__':
         'country_code_conversion_cell_idx': [2, 99, 136]
     }
     ob = CleanData(config=config)
-    ob.sanitize_csv_files()
