@@ -34,7 +34,7 @@ class Scraper:
             if country not in country_csv_url_map:
                 continue
             csv_download_url = country_csv_url_map[country]
-            storage_path = 'data\%s\\raw_data' % country
+            storage_path = 'data/%s/raw_data' % country
             zip_file_path = '%s/%s.zip' % (storage_path, country)
 
             resp = requests.get('%s%s' % (self.config['site_url'], csv_download_url))
@@ -63,7 +63,7 @@ if __name__ == '__main__':
             'download_link_class': 'download-column download-csv'
         },
         'path_config': {
-            'country_csv_url_map': r'dummy-data-product\src\dependencies\utils\country_csv_url_map.json'
+            'country_csv_url_map': r'dummy-data-product/src/dependencies/utils/country_csv_url_map.json'
         }
 
     }
