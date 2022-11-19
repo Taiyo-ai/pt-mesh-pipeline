@@ -6,18 +6,17 @@ import ssl
 import json
 import csv
 
-with open("cpv.html", encoding="utf-8") as openfile:
-    data = openfile.read()
-    soup = BeautifulSoup(data, 'html5lib')
-    id=[]
-    sector=[]
-    for element in soup.find_all("a", {"class": "cpv-click"}):
-        id.append(element['data-cpv'])
-        sector.append(element['data-cpv-des'])
-cpv_map= dict(zip(id,sector))
-
 
 def scrape(site):
+    with open("cpv.html", encoding="utf-8") as openfile:
+        data = openfile.read()
+        soup = BeautifulSoup(data, 'html5lib')
+        id=[]
+        sector=[]
+        for element in soup.find_all("a", {"class": "cpv-click"}):
+            id.append(element['data-cpv'])
+            sector.append(element['data-cpv-des'])
+    cpv_map= dict(zip(id,sector))
     class data:
         def __init__(self):
             self.name = ""
@@ -69,47 +68,35 @@ def scrape(site):
                 raw_data = json.dumps(scraped_data.__dict__)
         return raw_data
 
-    if site=='USGOV':
-        
-        zf = zipfile.ZipFile('C:/Users/Rajini/Desktop/Coding/jobs/pt-mesh-pipeline/data-ted-csv.zip')
-        df=pd.read_csv('USGOV.csv')
+    elif site=='USGOV':
+        print('scraping the USGOV site')
+        df = pd.read_csv('USGOV.csv', sep=',', on_bad_lines=None, index_col=False, dtype='unicode')
         object= df.to_numpy()
+        scraped_data=data
         for row in object:
-            scraped_data=data
-            scraped_data.name=names.name
-            scraped_data.description= 
-            scraped_data.source=
-            scraped_data.status= 
-            scraped_data.identified_status= 
-            scraped_data.project_or_tender=
-            scraped_data.budget= 
-            scraped_data.url= 
-            scraped_data.document_urls=
-            scraped_data.sector= 
-            scraped_data.subsector
-            scraped_data.identified_sector
-            scraped_data.identified_subsector
-            scraped_data.identified_sector_subsector_tuple
-            scraped_data.entities
-            scraped_data.country_name= 
-            scraped_data.country_code
-            scraped_data.region_name
-            scraped_data.region_code=
-            scraped_data.state
-            scraped_data.locality
-            scraped_data.neighbourhood= 
-            scraped_data.location
-            scraped_data.map_coordinates
-            scraped_data.timestamps= 
-            scraped_data.timestamp_range= 
-            scraped_data.timestamp_range_2= 
+            scraped_data.name=object[row][1]
+            scraped_data.description=object[row][46] 
+            scraped_data.source= object[row][11]
+            scraped_data.project_or_tender= 'tender'
+            scraped_data.budget= object[row][27]
+            scraped_data.url=object[row][45]  
+            scraped_data.document_urls=object[row][45]
+            scraped_data.sector=object[row][3] 
+            scraped_data.subsector= object[row][5]
+            scraped_data.country_name= 'USA'
+            scraped_data.state= object[row][40]
+            scraped_data.neighbourhood= object[row][42]
+            scraped_data.timestamps= object[row][16]
+            scraped_data.timestamp_range= object[row][16]
+            scraped_data.timestamp_range_2= object[row][16]
             raw_data_2 = json.dumps(scraped_data.__dict__)
         return raw_data_2
 
-    if site=='FL':
+    elif site=='FL':
         df=pd.read_csv('Florida.csv')
         object= df.to_numpy()
         scraped_data=data
+        json_list=[]
         for row in object:
             scraped_data.name=object[row][1]
             scraped_data.description=object[row][4] 
@@ -129,23 +116,24 @@ def scrape(site):
             scraped_data.timestamp_range= [row][11]
             scraped_data.timestamp_range_2= [row][14] 
             raw_data_3 = json.dumps(scraped_data.__dict__)
-        return raw_data_3
+            json_list.append(raw_data_3)
+        final_data= json.dumps(json_list)
+        return
 
-    if site=='TX':
+    elif site=='TX':
         df=pd.read_csv('Texas.csv')
         object= df.to_numpy()
-        scraped_data= new data()
+        scraped_data=data
+        json_list=[]
         with open('pt-mesh-pipeline\dummy-data-product\src\dependencies\scraping\Texas.json', 'r') as openfile:
             object_2 = json.load(openfile)
-            for row in object_2['features'][row]:
-                scraped_data.budget= object_2['features'][row]['properties']['EST_CONST_COST']
-
             for row in object:
                 scraped_data.name=object[row][0]
                 scraped_data.description=object[row][9] + [row][10]
                 scraped_data.status=object[row][32]
                 scraped_data.source= 'Texas Procurement'
                 scraped_data.project_or_tender= 'Project'
+                scraped_data.budget= object_2['features'][row]['properties']['EST_CONST_COST']
                 scraped_data.url= 'https://www.txdot.gov/projects/project-tracker.html'
                 scraped_data.document_urls= 'https://gis-txdot.opendata.arcgis.com/datasets/TXDOT::txdot-dcis-all-projects/explore'
                 scraped_data.sector= object[row][6]                         
@@ -160,12 +148,15 @@ def scrape(site):
                 scraped_data.timestamp_range= object[row][15]
                 scraped_data.timestamp_range_2= object[row][27] 
                 raw_data_4 = json.dumps(scraped_data.__dict__)
+                json_list.append(raw_data_4)
+        final_data= json.dumps(json_list)
         return raw_data_4
 
 
-    if site== 'CA':
+    elif site== 'CA':
         df=pd.read_csv('Cali.csv')
         object= df.to_numpy()
+        scraped_data=data
         for row in object:
             scraped_data.name=object[row][0]
             scraped_data.description=object[row][3]
@@ -192,9 +183,10 @@ def scrape(site):
             raw_data_5 = json.dumps(scraped_data.__dict__)
         return raw_data_5
 
-    if site=='UK':
+    elif site=='UK':
         df=pd.read_csv('UK.csv')
         object= df.to_numpy()
+        scraped_data=data
         scraped_data.name=object[row][5]
         scraped_data.description=object[row][6]
         scraped_data.source=[row][2]
@@ -218,5 +210,6 @@ def scrape(site):
         scraped_data.timestamp_range_2= object[row][24] 
         raw_data_6 = json.dumps(scraped_data.__dict__)
         return raw_data_6
-
+    else:
+        print('Scrape method undefined')
 
