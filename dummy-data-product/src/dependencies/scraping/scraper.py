@@ -194,31 +194,31 @@ def scrape(site):
             scraped_data=data
             scraped_data.name=object[row][5]
             scraped_data.description=object[row][6]
-            scraped_data.source=[row][2]
+            scraped_data.source=object[row][2]
             scraped_data.status=object[row][3]
             scraped_data.project_or_tender='tender' if object[row][1]=='Contract' else 'Undefined'
-            scraped_data.budget= object[row][35] if object[row][35].isnan==False and object[row][35]!=0 else object[row][33] if object[row][33].isnan==False and object[row][33]!=0 else object[row][32]
+            scraped_data.budget= object[row][35] if math.isnan(object[row][35])==False and object[row][35]!=0 else object[row][33] if math.isnan(object[row][33])==False and object[row][33]!=0 else object[row][32]
             scraped_data.url= object[row][19]
             scraped_data.document_urls= object[row][21]
             scraped_data.sector= object[row][31]
             for key, value in cpv_map.items():
                 if str(key)[:2]==str(object[0][10][:2]):                          
                     scraped_data.subsector=str(value)    
-            scraped_data.subsector= next(iter(d.items())) 
             scraped_data.country_name= object[row][17]
             scraped_data.region_name= object[row][9]
             scraped_data.region_code= object[row][16]
             scraped_data.locality= object[row][15]
-            scraped_data.neighbourhood= object[row][13]+' ,'+object[row][14]
+            scraped_data.neighbourhood= str(object[row][13])+' ,'+str(object[row][14])
             scraped_data.timestamps= object[row][23]
             scraped_data.timestamp_range= object[row][23]
             scraped_data.timestamp_range_2= object[row][24] 
             keys=['name', 'description','identified_status', 'project_or_tender', 'budget', 'url', 'document_urls','sector','country_name','region_code','neighbourhood', 'timestamps', 'timestamp_range','timestamp_range_2']
             lst=[(key, scraped_data.__dict__.get(key)) for key in keys]
             raw_data_6= json.dumps(dict(lst))
-        return raw_data_6
+            print(raw_data_6)
     else:
         print('Scrape method undefined')
+
 
 
 
