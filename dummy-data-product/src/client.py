@@ -1,6 +1,8 @@
 import dotenv
 import logging
-
+import geocoding
+import cleaning
+import standardizer
 from datetime import datetime
 
 # Importing scraping and data processing modules
@@ -21,24 +23,32 @@ def step_1():
 
 
 def step_2():
+    scraper.scrape('EU')
+    scraper.scrape('USGOV')
+    scraper.scrape('FL')
+    scraper.scrape('TX')
+    scraper.scrape('CA')
+    scraper.scrape('UK')
     logging.info("Scraped Main Data")
 
 
 def step_3():
+    cleaning.functions(args)
     logging.info("Cleaned Main Data")
 
 
 def step_4():
+    geocoding.geocoder(data)
     logging.info("Geocoded Cleaned Data")
 
 
 def step_5():
+    standardize.functions(args)
     logging.info("Standardized Geocoded Data")
 
 
 if __name__ == "__main__":
     import argparse
-
     parser = argparse.ArgumentParser()
     parser.add_argument("--step", help="step to be choosen for execution")
 
