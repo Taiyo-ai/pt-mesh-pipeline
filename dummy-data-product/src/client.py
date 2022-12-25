@@ -20,29 +20,29 @@ logging.basicConfig(level=logging.INFO)
 def step_1():
     scraper_object = TexasScraper()
     scraper_object.run()
-    logging.info("Scraped Metadata")
+    logging.info("Scraped Main Data")
 
 
 def step_2():
     cleaner_object = TexasCleaner()
     cleaner_object.run()
-    logging.info("Scraped Main Data")
+    logging.info("Cleaned Main Data")
 
 
 def step_3():
     geocoder_object = TexasGeocoder()
     geocoder_object.run()
-    logging.info("Cleaned Main Data")
+    logging.info("Geocoded Cleaned Data")
 
 
 def step_4():
     standardizer_object = TexasStandardizer()
     standardizer_object.run()
-    logging.info("Geocoded Cleaned Data")
+    logging.info("Standardized Geocoded Data")
 
 
 def step_5():
-    logging.info("Standardized Geocoded Data")
+    logging.info("")
 
 
 if __name__ == "__main__":

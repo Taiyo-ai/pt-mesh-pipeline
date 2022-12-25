@@ -96,6 +96,8 @@ class TexasStandardizer:
         self.df["identified_status"] = self.df["construction_company_contact"].apply(lambda x: "Active" if x == "" else "Closed")
         self.df["sector"] = self.df["description"].apply(lambda x: get_sector(x))
         self.df["subsector"] = self.df["description"].apply(lambda x: get_subsector(x))
+        self.df["identified_sector_subsector_tuple"] = self.df.apply(lambda row: (row.sector, row.subsector), axis=1)
+        self.df["text"] = self.df[["description", "status", "name"]].agg(", ".join, axis=1)
 
     def save_data(self):
         self.df.to_csv(get_path("standardized_data_path"))
