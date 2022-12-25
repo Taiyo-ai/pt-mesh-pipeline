@@ -4,6 +4,32 @@ import pytz
 from dependencies.utils import get_path
 
 
+def get_sector(x):
+    x = x.lower()
+    if "road" in x or "rail" in x or "highway" in x or "transport" in x or "airport" in x or "transit" in x or "port" in x or "bridge" in x:
+        return "Transport"
+    return "Maintenance/Infrastructure"
+
+
+def get_subsector(x):
+    x = x.lower()
+    if "road" in x or "highway" in x:
+        return "Roadways"
+    if "bridge" in x:
+        return "Roads - Bridges and Tunnels"
+    if "rail" in x:
+        return "Railways"
+    if "airport" in x:
+        return "Aviation/Airports"
+    if "transport" in x:
+        return "Urban Public Transport"
+    if "transit" in x:
+        return "Public Transit"
+    if "port" in x:
+        return "Ports/Harbour/Shipyard"
+    return "Repair and Upgrade"
+
+
 class TexasStandardizer:
 
     def __init__(self) -> None:
@@ -23,11 +49,11 @@ class TexasStandardizer:
             "construction_cost/estimate": "budget",
             "category1_description": "name"
         }, inplace=True)
-        self.df["aug_id"] = self.df["original_id"].apply(lambda x: f"txdot_{x}")
+        self.df["aug_id"] = self.df["original_id"].apply(lambda x: f"self.dfdot_{x}")
         # self.df["name"] = self.df.apply(lambda row: f"{row.description} at highway {row.highway} from {row.from_limit} to {row.to_limit}, {row.status} by {row.construction_company_contact}", axis=1)
         self.df["source"] = "Texas Department of Transportation Official Website"
-        self.df["url"] = "https://apps3.txdot.gov/apps-cq/project_tracker/"
-        self.df["document_urls"] = "ftp://ftp.dot.state.tx.us/pub/txdot-info/tpp/project-tracker/Project_Tracker.xls"
+        self.df["url"] = "https://apps3.self.dfdot.gov/apps-cq/project_tracker/"
+        self.df["document_urls"] = "ftp://ftp.dot.state.self.df.us/pub/self.dfdot-info/tpp/project-tracker/Project_Tracker.xls"
         self.df["state"] = "Texas"
 
         self.df["last_update_date"] = self.df["last_update_date"].apply(lambda x: pd.to_datetime(x).tz_localize("US/Central").tz_convert(pytz.utc).strftime("%Y-%m-%dT%H:%M:%S%z") if x != "TBD" else "")
@@ -67,6 +93,8 @@ class TexasStandardizer:
         self.df["category1_amount"] = self.df["category1_amount"].apply(lambda x: float(x) if x != "" else "")
 
         self.df["project_or_tender"] = self.df["construction_company_contact"].apply(lambda x: "T" if x == "" else "P")
+        self.df["sector"] = self.df["description"].apply(lambda x: get_sector(x))
+        self.df["subsector"] = self.df["description"].apply(lambda x: get_subsector(x))
 
     def save_data(self):
         self.df.to_csv(get_path("standardized_data_path"))
