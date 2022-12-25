@@ -93,6 +93,7 @@ class TexasStandardizer:
         self.df["category1_amount"] = self.df["category1_amount"].apply(lambda x: float(x) if x != "" else "")
 
         self.df["project_or_tender"] = self.df["construction_company_contact"].apply(lambda x: "T" if x == "" else "P")
+        self.df["identified_status"] = self.df["construction_company_contact"].apply(lambda x: "Active" if x == "" else "Closed")
         self.df["sector"] = self.df["description"].apply(lambda x: get_sector(x))
         self.df["subsector"] = self.df["description"].apply(lambda x: get_subsector(x))
 
