@@ -101,11 +101,11 @@ class TexasStandardizer:
         self.df.to_csv(get_path("standardized_data_path"))
 
     def run(self):
-        logging.info("Geocoding Started")
+        logging.info("Standardizing Started")
         self.load_data()
         self.process()
         self.save_data()
-        logging.info("Geocoding Done")
+        logging.info("Standardizing Done")
 
 
 if __name__ == "__main__":

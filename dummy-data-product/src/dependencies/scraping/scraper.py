@@ -9,7 +9,6 @@ class TexasScraper:
         self.df = None
 
     def get_xls_data(self):
-        logging.info("Scraping Started")
         self.df = pd.read_excel("ftp://ftp.dot.state.tx.us/pub/txdot-info/tpp/project-tracker/Project_Tracker.xls", engine="xlrd")
         column_list = self.df.iloc[4].values.flatten().tolist()
         self.df.columns = column_list
@@ -17,7 +16,9 @@ class TexasScraper:
         self.df.to_csv(get_path("master_data_path"))
 
     def run(self):
+        logging.info("Scraping Started")
         self.get_xls_data()
+        logging.info("Scraping Done")
 
 
 if __name__ == "__main__":
