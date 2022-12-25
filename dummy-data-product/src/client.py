@@ -47,6 +47,7 @@ def step_5():
 
 if __name__ == "__main__":
     import argparse
+    dotenv.load_dotenv()
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--step", help="step to be choosen for execution")

@@ -3,6 +3,7 @@ import logging
 import http.client
 import urllib.parse
 import json
+import os
 from dependencies.utils import get_path, get_county_location_data
 
 
@@ -10,7 +11,7 @@ def get_county_location(county):
     conn = http.client.HTTPConnection('api.positionstack.com')
 
     params = urllib.parse.urlencode({
-        'access_key': '6b27ad85059a911003d9b3fd0ebb5193',
+        'access_key': os.getenv("POSITION_STACK_API_KEY"),
         'query': county,
         'region': 'Texas',
         'limit': 1,
