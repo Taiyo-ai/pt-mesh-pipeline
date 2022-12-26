@@ -63,6 +63,7 @@ class TexasGeocoder:
 
     def run(self):
         logging.info("Geocoding Started")
+        # logging.info(os.getenv("POSITION_STACK_API_KEY"))
         self.load_data()
         self.process()
         self.save_data()

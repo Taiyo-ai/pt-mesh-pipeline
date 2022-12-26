@@ -8,16 +8,22 @@ class TexasScraper:
     def __init__(self) -> None:
         self.df = None
 
-    def get_xls_data(self):
+    def load_data(self):
         self.df = pd.read_excel("ftp://ftp.dot.state.tx.us/pub/txdot-info/tpp/project-tracker/Project_Tracker.xls", engine="xlrd")
+
+    def process(self):
         column_list = self.df.iloc[4].values.flatten().tolist()
         self.df.columns = column_list
         self.df = self.df.iloc[5:]
+
+    def save_data(self):
         self.df.to_csv(get_path("master_data_path"))
 
     def run(self):
         logging.info("Scraping Started")
-        self.get_xls_data()
+        self.load_data()
+        self.process()
+        self.save_data()
         logging.info("Scraping Done")
 
 
