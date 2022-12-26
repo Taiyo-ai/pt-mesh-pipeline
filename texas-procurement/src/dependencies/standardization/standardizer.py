@@ -1,6 +1,7 @@
 import pandas as pd
 import logging
 import pytz
+import spacy
 from dependencies.utils import get_path
 
 
@@ -107,6 +108,8 @@ class TexasStandardizer:
         self.df["subsector"] = self.df["description"].apply(lambda x: get_subsector(x))
         self.df["identified_sector_subsector_tuple"] = self.df.apply(lambda row: (row.sector, row.subsector), axis=1)
         self.df["text"] = self.df[["description", "status", "name"]].agg(", ".join, axis=1)
+        nlp = spacy.load("en_core_web_trf")
+        self.df["keyword"] = self.df["text"].apply(lambda x: nlp(x).ents)
 
     def save_data(self):
         self.df.to_csv(get_path("standardized_data_path"))
