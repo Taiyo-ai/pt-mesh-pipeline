@@ -56,6 +56,6 @@ def scrape_etender_data():
             except:
                 break
 
-    tender_df = pd.DataFrame(columns=['title', 'tender_id'], data=tender_list)
+    tender_df = pd.DataFrame(columns=['title', 'reference_no', 'tender_id'], data=tender_list)
     print(tender_df)
     tender_df.to_csv('india_tender_data.csv')
