@@ -1,0 +1,8 @@
+
+pandas == 1.5.3
+python-dotenv == 0.21.1
+logging
+datetime
+BeautifulSoups
+html5libs
+requests
