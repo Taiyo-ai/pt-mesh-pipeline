@@ -4,9 +4,6 @@ import os
 import numpy as np
 import pandas as pd
 
-import time
-import json
-
 ##Web Scraping Library
 from selenium import webdriver
 from bs4 import BeautifulSoup
