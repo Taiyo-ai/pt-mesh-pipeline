@@ -1,0 +1,5 @@
+The libraries used in the following Web Scraping are:
+
+Request Module
+Pandas
+BeautifulSoup
