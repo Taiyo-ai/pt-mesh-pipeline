@@ -16,8 +16,8 @@ logging.basicConfig(level=logging.INFO)
 
 # In each step create an object of the class, initialize the class with 
 # required configuration and call the run method 
-def step_1():
-    logging.info("Scraped Metadata")
+# def step_1():
+#     logging.info("Scraped Metadata")
     
 
 def step_2():
@@ -28,18 +28,18 @@ def step_2():
 
 def step_3():
     logging.info("Cleaned Main Data")
-
-
-def step_4():
-    logging.info("Geocoded Cleaned Data")
     df = pd.read_csv("../../data/raw_data.csv")
     cleaner = DataCleaner(df)
     cleaned_df = cleaner.clean_data()
     cleaned_df.to_csv("../../data/cleaned_data.csv", index=False)
     cleaner.run()
 
-def step_5():
-    logging.info("Standardized Geocoded Data")
+# def step_4():
+#     logging.info("Geocoded Cleaned Data")
+
+
+# def step_5():
+#     logging.info("Standardized Geocoded Data")
 
 
 if __name__ == "__main__":
