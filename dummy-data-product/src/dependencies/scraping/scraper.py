@@ -2,7 +2,7 @@ import urllib.request
 from html_table_parser.parser import HTMLTableParser
 import pandas as pd
 
-class EprocureScraper:
+class Scraper:
     
     def __init__(self, url):
         self.url = url
@@ -17,14 +17,6 @@ class EprocureScraper:
         p = HTMLTableParser()
         p.feed(xhtml)
         df = pd.DataFrame(p.tables[10])
-        df.drop([0,1], inplace=True)
-        df = df.reset_index(drop=True)
-        headers = df.iloc[0]
-        df  = pd.DataFrame(df.values[1:], columns=headers)
-        regex_pat = re.compile(r'([0-9]+[,.])', flags=re.IGNORECASE)
-        df['Tender Title'] = df['Tender Title'].str.replace(regex_pat, '', regex=True)
-        df['Closing Date'] = pd.to_datetime(df['Closing Date'])
-        df['Bid Opening Date'] = pd.to_datetime(df['Bid Opening Date'])
         return df
     
     def save_to_csv(self, file_name):
