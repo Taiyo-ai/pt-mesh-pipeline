@@ -4,11 +4,7 @@ import logging
 from datetime import datetime
 
 # Importing scraping and data processing modules
-# from dependencies.scraping.<file_name> import <class_name>
-# from dependencies.scraping.<file_name> import <class_name>
-# from dependencies.cleaning.<file_name> import <class_name>
-# from dependencies.geocoding.<file_name> import <class_name>
-# from dependencies.standardization.<file_name> import <class_name>
+from scrapping import Scrapping
 
 dotenv.load_dotenv(".env")
 logging.basicConfig(level=logging.INFO)
