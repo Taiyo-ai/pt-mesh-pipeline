@@ -1,3 +1,0 @@
-This a sample file placed in the *data* folder.
-
-All the outputs files from each step has to saved in this directory
