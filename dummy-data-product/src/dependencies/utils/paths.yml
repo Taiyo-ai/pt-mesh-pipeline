@@ -1,6 +1,6 @@
 metadata:
     description: Contains relative paths to Google Cloud Storage Bucket for different sources to be harvested
-    bucket_name: psd_data
+    bucket_name: tender
 
 paths:
     <dummy_name>:

@@ -1,3 +1,4 @@
+
 # Data Ingestion Pipeline Template
 
 This repository consists of boilerplate folder structure to write and organize your scripts for a data ingestion pipeline
