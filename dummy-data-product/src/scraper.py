@@ -46,3 +46,20 @@ class Scraper:
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
             writer.writerows(data)
+
+
+import unittest
+from scraper import Scraper
+
+class ScraperTestCase(unittest.TestCase):
+    def test_scrape_world_bank(self):
+        scraper = Scraper()
+        data = scraper.scrape_world_bank()
+
+        # Write assertions to verify the correctness of the scraped data
+        self.assertIsNotNone(data)
+        self.assertIsInstance(data, list)
+        self.assertTrue(len(data) > 0)
+
+if __name__ == "__main__":
+    unittest.main()
