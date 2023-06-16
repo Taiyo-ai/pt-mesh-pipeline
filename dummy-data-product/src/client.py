@@ -3,6 +3,20 @@ import logging
 
 from datetime import datetime
 
+from scraper import Scraper
+
+def main():
+    # Create an instance of the Scraper class
+    scraper = Scraper()
+
+    # Call the scrape_data method to initiate the scraping process
+    scraper.scrape_data()
+
+if __name__ == "__main__":
+    main()
+
+
+
 # Importing scraping and data processing modules
 # from dependencies.scraping.<file_name> import <class_name>
 # from dependencies.scraping.<file_name> import <class_name>
