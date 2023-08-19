@@ -3,6 +3,9 @@ import logging
 
 from datetime import datetime
 
+from dependencies.scraping.scraper import DataScraper
+from dependencies.scraping.utils import list_raw_tenders
+
 # Importing scraping and data processing modules
 # from dependencies.scraping.<file_name> import <class_name>
 # from dependencies.scraping.<file_name> import <class_name>
@@ -14,9 +17,14 @@ dotenv.load_dotenv(".env")
 logging.basicConfig(level=logging.INFO)
 
 
-# In each step create an object of the class, initialize the class with 
-# required configuration and call the run method 
+# In each step create an object of the class, initialize the class with
+# required configuration and call the run method
 def step_1():
+    scraper = DataScraper("https://etenders.gov.in/eprocure/app")
+    soup = scraper.scrape()
+    for tender in list_raw_tenders(soup):
+        print(tender)
+
     logging.info("Scraped Metadata")
 
 
