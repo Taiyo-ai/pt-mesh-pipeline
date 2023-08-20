@@ -3,11 +3,11 @@ from typing import Dict, Iterator
 
 from bs4 import BeautifulSoup
 
-from .models import RawTenders, RawTender
+from .models import TendersMetaData, RawTender
 from .scraper import DataScraper
 
 
-def list_raw_tenders(soup: BeautifulSoup) -> Iterator["RawTenders"]:
+def list_raw_tenders(soup: BeautifulSoup) -> Iterator["TendersMetaData"]:
     """
     Yields tender lists from the given soup.
 
@@ -37,9 +37,24 @@ def list_raw_tenders(soup: BeautifulSoup) -> Iterator["RawTenders"]:
             )
 
         tender_title: str = tender_detail_page_element.text
-        yield RawTenders(tender_title, tender_detail_page_url)
+        tender_reference_no_el = tender_detail_page_element.find_parent("td").find_next(
+            "td"
+        )
+        reference_no = tender_reference_no_el.text
+        closing_dt_el = tender_reference_no_el.find_next("td")
+        closing_dt = closing_dt_el.text
+        bid_opening_dt_el = closing_dt_el.find_next("td")
+        bid_opening_dt = bid_opening_dt_el.text
+        yield TendersMetaData(
+            tender_title,
+            tender_detail_page_url,
+            reference_no,
+            closing_dt,
+            bid_opening_dt,
+        )
 
-def fetch_tender(tender: RawTenders):
+
+def fetch_tender(tender: TendersMetaData):
     """Fetches a single raw tender."""
 
     url = f"https://etenders.gov.in{tender.tender_uri}"

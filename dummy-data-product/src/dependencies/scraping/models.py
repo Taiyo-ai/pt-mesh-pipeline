@@ -6,9 +6,12 @@ from bs4 import BeautifulSoup, Comment
 
 
 @dataclass
-class RawTenders:
+class TendersMetaData:
     tender_title: str
     tender_uri: str
+    reference_no: str
+    closing_dt: str
+    bid_opening_dt: str
 
 
 @dataclass

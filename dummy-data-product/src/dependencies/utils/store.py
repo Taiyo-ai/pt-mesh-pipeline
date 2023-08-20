@@ -1,5 +1,5 @@
 import json
-from typing import Any, Dict
+from typing import Any, Dict, Iterator
 
 
 class Store:
@@ -16,3 +16,8 @@ class Store:
         with open(f"{self.path}", "ab") as f:
             bytes_written = f.write(f"{json.dumps(data)}\n".encode("utf-8"))
         return bytes_written
+
+    def read(self) -> Iterator[str]:
+        with open(f"{self.path}", "rb") as f:
+            for line in f:
+                yield line.decode()

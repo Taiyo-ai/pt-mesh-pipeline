@@ -1,9 +1,12 @@
 import dotenv
+import json
 import logging
 
 from datetime import datetime
+from dataclasses import asdict
 
 from dependencies.scraping.scraper import DataScraper
+from dependencies.scraping.models import TendersMetaData
 from dependencies.scraping.utils import list_raw_tenders, fetch_tender
 from dependencies.utils.store import Store
 
@@ -17,15 +20,21 @@ def step_1():
     scraper = DataScraper("https://etenders.gov.in/eprocure/app")
     soup = scraper.scrape()
 
-    store = Store("scrapped_data.jsonl")
+    store = Store("../../data/metadata.jsonl")
     for raw_tender in list_raw_tenders(soup):
-        tender_data = fetch_tender(raw_tender)
-        store.save(tender_data)
+        store.save(asdict(raw_tender))
 
     logging.info("Scraped Metadata")
 
 
 def step_2():
+    metadata_store = Store("../../data/metadata.jsonl")
+    scrapeddata_store = Store("../../data/scrapeddata.jsonl")
+    for tender_meta in metadata_store.read():
+        meta = json.loads(tender_meta)
+        tender = fetch_tender(TendersMetaData(**meta))
+        scrapeddata_store.save(tender)
+
     logging.info("Scraped Main Data")
 
 
