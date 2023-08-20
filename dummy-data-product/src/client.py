@@ -4,14 +4,8 @@ import logging
 from datetime import datetime
 
 from dependencies.scraping.scraper import DataScraper
-from dependencies.scraping.utils import list_raw_tenders
-
-# Importing scraping and data processing modules
-# from dependencies.scraping.<file_name> import <class_name>
-# from dependencies.scraping.<file_name> import <class_name>
-# from dependencies.cleaning.<file_name> import <class_name>
-# from dependencies.geocoding.<file_name> import <class_name>
-# from dependencies.standardization.<file_name> import <class_name>
+from dependencies.scraping.utils import list_raw_tenders, fetch_tender
+from dependencies.utils.store import Store
 
 dotenv.load_dotenv(".env")
 logging.basicConfig(level=logging.INFO)
@@ -22,8 +16,11 @@ logging.basicConfig(level=logging.INFO)
 def step_1():
     scraper = DataScraper("https://etenders.gov.in/eprocure/app")
     soup = scraper.scrape()
-    for tender in list_raw_tenders(soup):
-        print(tender)
+
+    store = Store("scrapped_data.jsonl")
+    for raw_tender in list_raw_tenders(soup):
+        tender_data = fetch_tender(raw_tender)
+        store.save(tender_data)
 
     logging.info("Scraped Metadata")
 

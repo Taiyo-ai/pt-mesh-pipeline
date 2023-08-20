@@ -1,6 +1,8 @@
 import datetime as dt
 from dataclasses import dataclass
-from typing import List, Optional
+from typing import Dict, List
+
+from bs4 import BeautifulSoup, Comment
 
 
 @dataclass
@@ -10,7 +12,7 @@ class RawTenders:
 
 
 @dataclass
-class RawTender:
+class BasicDetails:
     organisation_chain: str
     reference_number: str
     tender_id: str
@@ -25,22 +27,57 @@ class RawTender:
     form_of_contract: str
     no_of_covers: int
     allow_two_stage_bidding: bool
-    payment_instruments: List[str]
-    no_of_covers: int
-    covers_information: List[str]
-    tender_total_fee: int
+
+    @staticmethod
+    def from_soup(soup: BeautifulSoup):
+        label_tds = soup.find_all("td", class_="textbold1")
+        label_td = None
+        for td in label_tds:
+            if td.text.strip() == "Basic Details":
+                label_td = td
+                break
+
+        if label_td is None:
+            raise RuntimeError("Basic Details not found in the soup")
+
+
+@dataclass
+class PaymentInstructions:
+    serial_number: int
+    instrument_type: str
+
+
+@dataclass
+class CoversInformation:
+    cover_no: int
+    cover_type: str
+    description: str
+    document_type: str
+
+
+@dataclass
+class TenderFeeDetails:
+    tender_fee: float
     fee_payable_to: str
     fee_payable_at: str
     fee_exemption_allowed: bool
-    emd_amount: int
+
+
+@dataclass
+class EMDFeeDetails:
+    emd_amount: float
     emd_fee_type: str
     emd_payable_to: str
     emd_exempt_allowed: bool
     emd_payable_at: str
+
+
+@dataclass
+class WorkItemDetails:
     title: str
     description: str
     pre_qualification: str
-    tender_value: int
+    tender_value: str
     contract_type: str
     location: str
     should_allow_nda_tender: bool
@@ -50,24 +87,65 @@ class RawTender:
     allow_preferential_bidder: bool
     period_of_work_in_days: int
     bid_opening_place: str
+
+
+@dataclass
+class CriticalDetails:
     published_dt: dt.datetime
     sale_start_dt: dt.datetime
     sale_end_dt: dt.datetime
     bid_submission_start_dt: dt.datetime
     bid_submission_end_dt: dt.datetime
-    # We cannot use this, because the download URIs are session based
-    # and requires a captcha to actually download the files
-    # which simple bots cannot do at the moment
-    # tender_documents_url: str
-    tender_invitation_authority_name: str
-    tender_invitation_authority_address: str
 
-    # Optional Defaults
-    remarks: Optional[str] = None
-    sub_category: Optional[str] = None
-    clarification_start_dt: Optional[dt.datetime] = None
-    clarification_end_dt: Optional[dt.datetime] = None
-    emd_percentage: Optional[int] = None
-    pre_bid_meeting_address: Optional[str] = None
-    pre_bid_meeting_place: Optional[str] = None
-    pre_bid_meeting_date: Optional[dt.datetime] = None
+
+@dataclass
+class TenderDocuments:
+    document_type: str
+    serial_no: int
+    document_name: str
+    description: str
+    document_size: float  # in KB
+
+
+@dataclass
+class TenderInvitingAuthority:
+    name: str
+    address: str
+
+
+@dataclass
+class RawTender:
+    basic_details: BasicDetails
+    payment_instruments: List[PaymentInstructions]
+    covers_information: List[CoversInformation]
+    tender_fee_details: TenderFeeDetails
+    emd_fee_details: EMDFeeDetails
+    work_item_details: WorkItemDetails
+    critical_details: CriticalDetails
+    tender_documents: List[TenderDocuments]
+    tender_inviting_authority: TenderInvitingAuthority
+
+    @classmethod
+    def from_soup(cls, soup: BeautifulSoup):
+        """Create a raw tender object from the soup."""
+
+        section_headers = soup.find_all("td", class_="textbold1")
+        section_contents = soup.find_all("table", class_="tablebg")
+
+        section_labels = [header.text.split(",")[0].strip().replace(" ", "_").lower() for header in section_headers]
+        section_values = []
+        for section in section_contents:
+            caption_els = section.find_all("td", class_="td_caption")
+            captions = [" ".join(caption.text.split()) for caption in caption_els]
+            value_els = section.find_all("td", class_="td_field")
+            values = [" ".join(value.text.split()) for value in value_els]
+            section_values.append({caption: value for caption, value in zip(captions, values)})
+
+        mapping: Dict[str, str] = {key: value for key, value in zip(section_labels, section_values)}
+        """
+        TODO: Load the mapping dict into `RawTender` dataclass to have pythonic representation of data
+        i. Format the `mapping` data to match with the dataclasses defined structure
+        ii. Format the _special_ data representation of nested lists for "Payment Instruments", "Covers Information"
+        and "Tenders Documents" sections.
+        """
+        return mapping
