@@ -31,18 +31,6 @@ class BasicDetails:
     no_of_covers: int
     allow_two_stage_bidding: bool
 
-    @staticmethod
-    def from_soup(soup: BeautifulSoup):
-        label_tds = soup.find_all("td", class_="textbold1")
-        label_td = None
-        for td in label_tds:
-            if td.text.strip() == "Basic Details":
-                label_td = td
-                break
-
-        if label_td is None:
-            raise RuntimeError("Basic Details not found in the soup")
-
 
 @dataclass
 class PaymentInstructions:
