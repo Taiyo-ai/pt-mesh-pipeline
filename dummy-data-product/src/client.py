@@ -1,7 +1,9 @@
 import dotenv
 import logging
+from dependencies.scraping.scraper import Scraper
 
 from datetime import datetime
+import pandas as pd
 
 # Importing scraping and data processing modules
 # from dependencies.scraping.<file_name> import <class_name>
@@ -18,6 +20,18 @@ logging.basicConfig(level=logging.INFO)
 # required configuration and call the run method 
 def step_1():
     logging.info("Scraped Metadata")
+    url = "https://etenders.gov.in/eprocure/app"
+    scraper = Scraper(url)
+    scraped_data = scraper.scraping_data()
+
+    #Column title of the data
+    columns = ["S.No", "e-Published Date", "Bid Submission Closing Date", "Tender Opening Date", "Title and Ref", "Organisation Chain"]
+    df = pd.DataFrame(scraped_data, columns=columns)
+
+    #Save the scraped data to a csv file
+    df.to_csv("data/scraped_data.csv")
+
+    scraper.driver_close()
 
 
 def step_2():
