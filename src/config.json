@@ -1,0 +1,7 @@
+{
+	"headless"	:	true, 
+	"private"		:	true,
+	"output_csv"	:	"e_procurement_goi.csv",
+	"start_ind"	:	0,
+	"end_ind"		:	100
+}
