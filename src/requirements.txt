@@ -1,0 +1,7 @@
+BeautifulSoup4
+captcha-solver
+lxml
+pandas
+requests
+selenium
+webdriver-manager
