@@ -23,7 +23,7 @@ In this webscraping project, I am extracting latest tenders data and tenders dat
 * The <strong>Tenders by Location</strong> page also consists of <strong>captcha</strong>, which I cannot able to bypass to automatic extraction, but find a workaround to get the captcha image and entering the data of the captcha with the help of 'captcha-solver' and giving that input to the page via 'selenium'. The resultant data exported to csv file.
 * The files exported have date embedded in the filename.
 
-Note: \ 
+Note:
 * Selenium opens chrome web browser while extracting data, so please do not close the browser, which will result in error, the browser closes after the execution of the program.
 * Use virtual environment to isolate the environment from the base environment.
 
