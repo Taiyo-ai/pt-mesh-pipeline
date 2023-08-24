@@ -27,5 +27,12 @@ Note:
 * Selenium opens chrome web browser while extracting data, so please do not close the browser, which will result in error, the browser closes after the execution of the program.
 * Use virtual environment to isolate the environment from the base environment.
 
+### Usage
+Please change the directory in the client.py before executing the code
+
+```python
+python3 client.py
+```
+
 ### Credits
 I Would like to thank <strong>Taiyo.AI<strong> for giving this opportunity to work on the task, which enhanced my knowlegde and credit to <strong>Governament of India</strong> for providing the data in an opne environment.
