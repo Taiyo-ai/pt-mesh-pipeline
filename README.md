@@ -1,74 +1,31 @@
-# Data Ingestion Pipeline Template
+# Data Engineering Task Assignment
+## Company: Taiyo.AI
 
-This repository consists of boilerplate folder structure to write and organize your scripts for a data ingestion pipeline
-
-## Folder Structure
-The tree diagram below represents a general file structure
-
-```
-|--- data_source_name                      
-     |--- deploy                            # pipeline orchestration and configuration of DAGs
-     |    |---dev              
-     |    |---prod
-     |--- src
-          |--- dependencies
-          |    |--- cleaning
-          |    |    |--- __init__.py
-          |    |    |--- cleaner.py         ## Cleaning script here
-          |    |--- geocoding
-          |    |    |--- __init__.py
-          |    |    |--- geocoder.py        ## Geocoding script here
-          |    |--- scraping                # This folder contains all data harvesting scipts
-          |    |    |--- __init__.py
-          |    |    |--- scraper.py         ## Harvesting script here
-          |    |--- standardization
-          |    |    |--- __init__.py
-          |    |    |--- standardizer.py    ## Standardization script here
-          |    |--- utils                   # Utility and helper scipts to be placed here
-          |         |--- __init__.py
-          |--- .dockerignore
-          |--- Dockerfile
-          |--- client.py                    # Master script that connects all the above blocks
-          |--- requirements.txt
-```
-
-## Different Blocks of ETL pipeline
-1. Scraping/Data Harvesting
-    - Contains all the scripts that extracts metadata and raw data to be processed further from database, websites, webservices, APIs, etc.
-2. Cleaning
-    - Treatment missing fields and values
-    - Conversion of amounts to USD
-    - Treatment of duplicate entries
-    - Convert country codes to `ISO 3166-1 alpha3` i.e. 3 letter format
-    - Identify region name and region code using the country code
-3. Geocoding
-    - Based upon location information available in the data
-        - Location label
-        - Geo-spatial coordinates
-    - Missing field can be found either by using geocoding or reverse geocoding with max precision available
-4. Standardization
-    - Fields to be strictly in **lower snake casing**
-    - Taking care of data types and consistency of fields
-    - Standardize fields like `sector` and `subsector`
-    - Mapping of `status` and `stage`
-    - Renaming of field names as per required standards
-    - Manipulation of certain fields and values to meet up the global standards for presentation, analytics and business use of data
-    - Refer to the [Global Field Standards](https://docs.google.com/spreadsheets/d/1sbb7GxhpPBE4ohW6YQEakvrEkkFSwvUrXnmG4P_B0OI/edit#gid=0) spreadsheet for the standards to be followed
-
-### Note
-> Depending upon what fields are already available in the data `GEOCODING` step may or may not be required.
-
-> It is recommended that the resultant data after each and every step is stored and backed up for recovery purpose.
-
-> Apart from the primary fields listed down in [Global Field Standards](https://docs.google.com/spreadsheets/d/1sbb7GxhpPBE4ohW6YQEakvrEkkFSwvUrXnmG4P_B0OI/edit#gid=0) spreadsheet, there are several other secondary fields that are to be scraped; given by the data provider for every document that holds significant business importance.
-
-## Get started with
-- Fork the repository by clicking the `Fork` button on top right-hand side corner of the page.
-- After creating fork repo, create a branch in that repo and finally create a `PULL REQUEST` from fork repo branch to the main branch in upstream branch of root repo.
+### Task Description
+Task is to create a scraper from one of the website from Time Series data or Projects and Tenders, I chose to scrape the data from <strong>E-procurement Government of India: https://etenders.gov.in/eprocure/app </strong> from Projects and Tenders with Python language.
 
 
-### Submission and Evaluation
-- For assignment submission guidelines and evaluation criteria refer to the [WIKI](https://github.com/Taiyo-ai/pt-mesh-pipeline/wiki) documentation
+### Required Packages
+BeautifulSoup4 \
+captcha-solver \
+lxml \
+pandas \
+requests \
+selenium \
+webdriver-manager \
 
----
-Copyright © 2021 Taiyō.ai Inc.
+### Project Description
+The <strong>E-procurement Government of India</strong> webiste is the central public procurement portal of <strong>Governamanet of India</strong> for eProcurement. It has various services to get the information about the latest tenders, tenders by location, tenders by organization, tenders status etc. Bidders can enroll also.
+
+In this webscraping project, I am extracting latest tenders data and tenders data by location. \ 
+* Used 'Beautiful Soup' for getting latest tenders data and exported the retrieved data to csv file.
+* Used 'Selenium' to navigate to <strong>Tenders by Location</strong> page and input the location based on the given location.
+* The <strong>Tenders by Location</strong> page also consists of <strong>captcha</strong>, which I cannot able to bypass to automatic extraction, but find a workaround to get the captcha image and entering the data of the captcha with the help of 'captcha-solver' and giving that input to the page via 'selenium'. The resultant data exported to csv file.
+* The files exported have date embedded in the filename.
+
+Note: \ 
+* Selenium opens chrome web browser while extracting data, so please do not close the browser, which will result in error, the browser closes after the execution of the program.
+* Use virtual environment to isolate the environment from the base environment.
+
+### Credits
+I Would like to thank <strong>Taiyo.AI<strong> for giving this opportunity to work on the task, which enhanced my knowlegde and credit to <strong>Governament of India</strong> for providing the data in an opne environment.
