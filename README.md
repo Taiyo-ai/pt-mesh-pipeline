@@ -12,7 +12,7 @@ lxml \
 pandas \
 requests \
 selenium \
-webdriver-manager \
+webdriver-manager
 
 ### Project Description
 The <strong>E-procurement Government of India</strong> webiste is the central public procurement portal of <strong>Governamanet of India</strong> for eProcurement. It has various services to get the information about the latest tenders, tenders by location, tenders by organization, tenders status etc. Bidders can enroll also.
