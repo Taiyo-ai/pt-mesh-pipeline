@@ -1,39 +1,52 @@
 import dotenv
 import logging
-
+import os
 from datetime import datetime
 
 # Importing scraping and data processing modules
-# from dependencies.scraping.<file_name> import <class_name>
-# from dependencies.scraping.<file_name> import <class_name>
-# from dependencies.cleaning.<file_name> import <class_name>
-# from dependencies.geocoding.<file_name> import <class_name>
-# from dependencies.standardization.<file_name> import <class_name>
+from dependencies.scraping.scraper import Scarper
+from dependencies.cleaning.cleaning import CleanigData
+from dependencies.geocoding.geocoder import Geocode
+from dependencies.standardization.standardizer import Stadardization
 
 dotenv.load_dotenv(".env")
 logging.basicConfig(level=logging.INFO)
 
 
-# In each step create an object of the class, initialize the class with 
-# required configuration and call the run method 
+# In each step create an object of the class, initialize the class with
+# required configuration and call the run method
 def step_1():
     logging.info("Scraped Metadata")
+    webdriver_path = os.environ.get("WEBDRIVER_PATH")
+    processes = int(os.environ.get("PROCESSES", 15))
+    config = {
+        # class specific configuration
+        "webdriver_path": webdriver_path,
+        "PROCESSES": processes,
+
+    }
+
+    obj = Scarper(config=config)
+    obj.run()
 
 
 def step_2():
-    logging.info("Scraped Main Data")
-
+    logging.info("Cleaned Main Data")
+    csvfile = os.environ.get("CSV_FILE")
+    obj = CleanigData(csvfile=csvfile)
+    obj.run()
 
 def step_3():
-    logging.info("Cleaned Main Data")
-
+    logging.info("Geocoded Cleaned Data")
+    csvfile = os.environ.get("CSV_FILE")
+    obj = Geocode(csvfile=csvfile)
+    obj.run()
 
 def step_4():
-    logging.info("Geocoded Cleaned Data")
-
-
-def step_5():
     logging.info("Standardized Geocoded Data")
+    csvfile = os.environ.get("CSV_FILE")
+    obj = Stadardization(csvfile=csvfile)
+    obj.run()
 
 
 if __name__ == "__main__":
