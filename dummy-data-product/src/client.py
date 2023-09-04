@@ -1,50 +1,44 @@
 import dotenv
 import logging
 from datetime import datetime
-
-# Importing scraping and data processing modules
-from dependencies.scraping.scraper import extract_metadata
-from dependencies.scraping.scraper import extract_raw_data
-from dependencies.cleaning.cleaning import step_3
-from dependencies.geocoding.geocoder import step_4
-from dependencies.standardization.standardizer import step_5
+from dependencies.scraping.scraper import scrape_world_bank_data
+from dependencies.cleaning.cleaning import clean_data
+from dependencies.geocoding.geocoder import geocode_data
+from dependencies.standardization.standardizer import standardize_data
+import csv
 
 dotenv.load_dotenv(".env")
 logging.basicConfig(level=logging.INFO)
 
-# Define a dictionary to map step names to their corresponding functions
-step_functions = {
-    "step_1": extract_metadata,
-    "step_2": extract_raw_data,
-    "step_3": step_3,
-    "step_4": step_4,
-    "step_5": step_5,
-}
-
 def step_1():
-    logging.info("Step 1: Scraping Metadata")
-    scraper = extract_metadata(config)
-    scraper.run()
+    # Step 1: Scraping Metadata
+    logging.info("Scraping Metadata")
+    metadata, _ = scrape_world_bank_data()
+    # Process metadata if needed
 
 def step_2():
-    logging.info("Step 2: Scraped Main Data")
-    main_data_scraper = extract_raw_data(config)
-    main_data_scraper.run()
+    # Step 2: Scraping Main Data
+    logging.info("Scraping Main Data")
+    _, raw_data = scrape_world_bank_data()
+    # Process raw_data if needed
 
 def step_3():
-    logging.info("Step 3: Cleaned Main Data")
-    cleaner = step_3(config)
-    cleaner.run()
+    # Step 3: Cleaning Main Data
+    logging.info("Cleaning Main Data")
+    cleaned_data = clean_data(raw_data)
+    # Process cleaned_data if needed
 
 def step_4():
-    logging.info("Step 4: Geocoded Cleaned Data")
-    geocoder = step_4(config)
-    geocoder.run()
+    # Step 4: Geocoding Cleaned Data
+    logging.info("Geocoding Cleaned Data")
+    geocoded_data = geocode_data(cleaned_data)
+    # Process geocoded_data if needed
 
 def step_5():
-    logging.info("Step 5: Standardized Geocoded Data")
-    standardizer = step_5(config)
-    standardizer.run()
+    # Step 5: Standardizing Geocoded Data
+    logging.info("Standardizing Geocoded Data")
+    standardized_data = standardize_data(geocoded_data)
+    # Process standardized_data if needed
 
 if __name__ == "__main__":
     import argparse
@@ -54,17 +48,16 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    config = {}  # Define your configuration here
+    if args.step:
+        step_function = globals().get(f"step_{args.step}")
+        if step_function:
+            step_function()
+        else:
+            logging.error(f"Invalid step: {args.step}")
 
-    selected_step = step_functions.get(f"step_{args.step}")
-
-    if selected_step:
-        selected_step()
-        logging.info(
-            {
-                "last_executed": str(datetime.now()),
-                "status": "Pipeline executed successfully",
-            }
-        )
-    else:
-        logging.error(f"Step '{args.step}' not found.")
+    logging.info(
+        {
+            "last_executed": str(datetime.now()),
+            "status": "Pipeline executed successfully",
+        }
+    )
