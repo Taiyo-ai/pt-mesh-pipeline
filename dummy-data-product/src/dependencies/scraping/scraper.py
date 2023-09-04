@@ -40,9 +40,4 @@ def extract_raw_data(soup):
         raw_data.append({"Tender Name": name, "Tender Details": details})
     return raw_data
 
-    # tender_elements = soup.find_all("div", class_="tender")
-    # for tender in tender_elements:
-    #     name = tender.find("h3").text.strip()
-    #     details = tender.find("p").text.strip()
-    #     raw_data.append({"Tender Name": name, "Tender Details": details})
-    # return raw_data
+   
