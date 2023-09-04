@@ -33,9 +33,16 @@ def extract_raw_data(soup):
     # Replace this with your logic to extract raw data from the website
     raw_data = []
     # Example: Extracting tender names and details
-    tender_elements = soup.find_all("div", class_="tender")
+    tender_elements = soup.find_all("h3", class_="Content Type : Reports title")
     for tender in tender_elements:
-        name = tender.find("h2").text.strip()
-        details = tender.find("p").text.strip()
+        name = tender.get_text().strip()
+        details = tender.find_next("span", class_="trimmed").get_text().strip()
         raw_data.append({"Tender Name": name, "Tender Details": details})
     return raw_data
+
+    # tender_elements = soup.find_all("div", class_="tender")
+    # for tender in tender_elements:
+    #     name = tender.find("h3").text.strip()
+    #     details = tender.find("p").text.strip()
+    #     raw_data.append({"Tender Name": name, "Tender Details": details})
+    # return raw_data

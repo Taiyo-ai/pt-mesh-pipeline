@@ -83,7 +83,7 @@ if __name__ == "__main__":
         if step_function:
             step_function()
         else:
-            logging.error(f"Invalid step: {args.step}")
+            logging.error(f"Invalid step: {args.step}") 
 
     logging.info(
         {
