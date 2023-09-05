@@ -1,0 +1,83 @@
+# IMPORTING LIBRARIES
+understanding the domain/variables
+
+import numpy as np
+import pandas as pd 
+import seaborn as sns
+import matplotlib.pyplot as plt
+%matplotlib inline
+import warnings
+warnings.filterwarnings("ignore")
+
+# load the data
+
+app_data=pd.read_csv("world_bank_data.csv")
+
+checking the structure,shape etc..
+
+app_data.head()
+
+app_data.shape
+
+app_data.describe()
+
+app_data.info()
+
+app_data.dtypes
+
+null_val=app_data.isnull().mean().reset_index()
+null_val
+
+null_val[0]=null_val[0]*100
+
+## Dropping columns
+
+### Checking what columns with more than 40% missing values
+columns_to_del = []
+total_rows = app_data.shape[0]
+for column in app_data.columns:
+    na_percent = round((app_data[column].isnull().sum() / total_rows) * 100, 1)
+    if na_percent >= 40:
+        print(f"{column}: {na_percent}")
+        columns_to_del.append(column)
+print(f"\nNumber of columns to delete:  {len(columns_to_del)}")
+
+for column in app_data.columns:
+    if app_data[column].dtype == 'int64' or app_data[column].dtype == 'float64':
+        if app_data[column].isnull().sum() > 0:
+            print(f"{column}: {(app_data[column].isnull().sum() / app_data.shape[0]) * 100}")
+
+null_val2=app_data.isnull().mean().reset_index()
+null_val2=null_val2.rename(columns={"index":"column name",0:"% missing values"})
+missing_null_val2=null_val2[null_val2["% missing values"]>0]
+missing_null_val2
+
+
+app_data.isnull().sum()
+
+app_data["Txturl"].mode()
+
+app_data["Txturl"]=app_data["Txturl"].fillna(0)
+
+app_data["Pdfurl"].mode()
+
+app_data["Pdfurl"]=app_data["Pdfurl"].fillna(0)
+
+app_data["Pdfurl"].notna()
+
+app_data.isnull().sum()
+
+app_data["WB Lending Instrument Type"].mode()
+
+app_data["WB Lending Instrument Type"]=app_data["WB Lending Instrument Type"].fillna("IPF")
+
+app_data["Project Volume"].mode()
+
+app_data["Project Volume"]=app_data["Project Volume"].fillna(">=100 million")
+
+app_data["Project Name"].mode()
+
+app_data["Project Name"]=app_data["Project Name"].fillna("Health project")
+
+app_data.isnull().sum()
+
