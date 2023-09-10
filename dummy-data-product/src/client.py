@@ -1,39 +1,51 @@
 import dotenv
-import logging
-
+from dependencies.utils.logging import logger
+import os
 from datetime import datetime
 
 # Importing scraping and data processing modules
-# from dependencies.scraping.<file_name> import <class_name>
-# from dependencies.scraping.<file_name> import <class_name>
-# from dependencies.cleaning.<file_name> import <class_name>
-# from dependencies.geocoding.<file_name> import <class_name>
-# from dependencies.standardization.<file_name> import <class_name>
+
+from dependencies.scraping.scraper import WebScrapper
+from dependencies.cleaning.cleaning import CleanData
+from dependencies.geocoding import geocoder
+from dependencies.standardization.standardizer import Standardizer
 
 dotenv.load_dotenv(".env")
-logging.basicConfig(level=logging.INFO)
 
 
-# In each step create an object of the class, initialize the class with 
-# required configuration and call the run method 
+# In each step create an object of the class, initialize the class with
+# required configuration and call the run method
+
 def step_1():
-    logging.info("Scraped Metadata")
+    logger.info("Scraped Main Data")
+
+    URL = os.getenv("URL")  # setting url
+
+    web_scrapper = WebScrapper(URL)  # creating WebScrapper class object
+    web_scrapper.run()
 
 
 def step_2():
-    logging.info("Scraped Main Data")
+    logger.info("Cleaned Main Data")
+    CleanData.run()
 
 
 def step_3():
-    logging.info("Cleaned Main Data")
+    logger.info("Geocoded Cleaned Data")
+    geocoder.run()
 
 
 def step_4():
-    logging.info("Geocoded Cleaned Data")
+    logger.info("Standardized Geocoded Data")
+    Standardizer.run()
 
 
-def step_5():
-    logging.info("Standardized Geocoded Data")
+def step_():
+    logger.info("No argument provided , Running all methods")
+    step_1()
+    step_2()
+    step_3()
+    step_4()
 
 
 if __name__ == "__main__":
@@ -44,9 +56,12 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    print("args  ", args)
+    print(f"step_{args.step}()")
+
     eval(f"step_{args.step}()")
 
-    logging.info(
+    logger.info(
         {
             "last_executed": str(datetime.now()),
             "status": "Pipeline executed successfully",
