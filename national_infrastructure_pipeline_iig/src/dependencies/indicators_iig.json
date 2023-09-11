@@ -1,0 +1,130 @@
+{
+  "original_id": {
+    "description": "Original Unique ID used the native source",
+    "unit": "None"
+  },
+  "name": {
+    "description": "Name",
+    "unit": "string"
+  },
+  "status": {
+    "description": "Project Status",
+    "unit": "string"
+  },
+  "country_name": {
+    "description": "Country Name",
+    "unit": "string"
+  },
+  "sector": {
+    "description": "Sector",
+    "unit": "string"
+  },
+  "start_date": {
+    "description": "Project Start Date",
+    "unit": "string"
+  },
+  "completion_date": {
+    "description": "Project Completion Date",
+    "unit": "start"
+  },
+  "last_updated_date": {
+    "description": "Last Updated Date",
+    "unit": "start"
+  },
+  "stage": {
+    "description": "Project Stage",
+    "unit": "start"
+  },
+  "views": {
+    "description": "Views Project has received",
+    "unit": "number"
+  },
+  "url": {
+    "description": "Url",
+    "unit": "None"
+  },
+  "requirement_type": {
+    "description": "Requirement Type",
+    "unit": "None"
+  },
+  "requirement_details": {
+    "description": "Requirement Details",
+    "unit": "None"
+  },
+  "line_ministry": {
+    "description": "Line Ministry",
+    "unit": "string"
+  },
+  "location": {
+    "description": "Location",
+    "unit": "string"
+  },
+  "promoter_type": {
+    "description": "Promoter Type",
+    "unit": "string"
+  },
+  "budget": {
+    "description": "Investment In Usd",
+    "unit": "USD"
+  },
+  "state": {
+    "description": "State",
+    "unit": "string"
+  },
+  "subsector": {
+    "description": "Subsector",
+    "unit": "string"
+  },
+  "data_source": {
+    "description": "Data Source",
+    "unit": "string"
+  },
+  "country_code": {
+    "description": "Country Code",
+    "unit": "string"
+  },
+  "region_name": {
+    "description": "Region Name",
+    "unit": "string"
+  },
+  "region_code": {
+    "description": "Region Code",
+    "unit": "string"
+  },
+  "project_or_tender": {
+    "description": "Descriptor tag to identify wheter the document is a project or tender",
+    "unit": "string"
+  },
+  "county": {
+    "description": "County",
+    "unit": "string"
+  },
+  "locality": {
+    "description": "Locality",
+    "unit": "string"
+  },
+  "neighbourhood": {
+    "description": "Neighbourhood",
+    "unit": "string"
+  },
+  "map_coordinates": {
+    "description": "Map Coordinates",
+    "unit": "string"
+  },
+  "industry_info": {
+    "description": "Industry Info",
+    "unit": "string"
+  },
+  "identified_sector": {
+    "description": "Identified Sector",
+    "unit": "string"
+  },
+  "identified_subsector": {
+    "description": "Identified Subsector",
+    "unit": "None"
+  },
+  "identified_status": {
+    "description": "Identified Status",
+    "unit": "None"
+  }
+}

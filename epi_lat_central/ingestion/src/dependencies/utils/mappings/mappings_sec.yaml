@@ -1,0 +1,136 @@
+mappings:
+  properties:
+    aug_id:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    tender_opening_date:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    bid_opening_date:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    bid_submission_closing_date:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    bid_submission_end_date:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    bid_submission_start_date:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    corrigendum:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    document_download_end_date:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    document_download_start_date:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    emd:
+      type: float
+    epublished_date:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    epublished_date_:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    inviting_authority_address:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    inviting_authority_name:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    label:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    organization_name:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    organization_type:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    sessioned_url:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    state_name:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    tender_category:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    tender_fee:
+      type: float
+    tender_type:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    work_description:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+settings:
+  index:
+    number_of_replicas: '1'
+    number_of_shards: '5'

@@ -1,0 +1,122 @@
+mappings:
+  properties:
+    aug_id:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    budget:
+      type: float
+    country_code:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    country_name:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    identified_sector:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    identified_sector_subsector_tuple:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    identified_subsector:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    location:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    map_coordinates:
+      type: geo_point
+    name:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    original_id:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    project_or_tender:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    region_code:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    region_name:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    sector:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    source:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    status:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    subsector:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    url:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    timestamps:
+      type: object
+    timestamp_range:
+      type: object
+    identified_status:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+settings:
+  index:
+    number_of_replicas: '1'
+    number_of_shards: '5'

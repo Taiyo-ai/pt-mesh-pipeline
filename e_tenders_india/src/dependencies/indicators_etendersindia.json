@@ -1,0 +1,266 @@
+{
+	"organisation_chain": {
+		"description": "Organisation Chain",
+		"unit": "None"
+	},
+	"tender_reference_number": {
+		"description": "Tender Reference Number",
+		"unit": "None"
+	},
+	"original_id": {
+		"description": "Original Id assigned by source",
+		"unit": "None"
+	},
+	"tender_type": {
+		"description": "Tender Type",
+		"unit": "None"
+	},
+	"sector": {
+		"description": "Sector given in source",
+		"unit": "None"
+	},
+	"general_technical_evaluation_allowed": {
+		"description": "General Technical Evaluation Allowed",
+		"unit": "None"
+	},
+	"payment_mode": {
+		"description": "Payment Mode",
+		"unit": "None"
+	},
+	"is_multi_currency_allowed_for_fee": {
+		"description": "Is Multi Currency Allowed For Fee",
+		"unit": "None"
+	},
+	"form_of_contract": {
+		"description": "Form Of Contract",
+		"unit": "None"
+	},
+	"no._of_covers": {
+		"description": "No. Of Covers",
+		"unit": "None"
+	},
+	"itemwise_technical_evaluation_allowed": {
+		"description": "Itemwise Technical Evaluation Allowed",
+		"unit": "None"
+	},
+	"is_multi_currency_allowed_for_boq": {
+		"description": "Is Multi Currency Allowed For Boq",
+		"unit": "None"
+	},
+	"allow_two_stage_bidding": {
+		"description": "Allow Two Stage Bidding",
+		"unit": "None"
+	},
+	"instrument_type": {
+		"description": "Instrument Type",
+		"unit": "None"
+	},
+	"cover_details": {
+		"description": "Cover Details",
+		"unit": "None"
+	},
+	"tender_fee_in_\u20b9": {
+		"description": "Tender Fee In \u20b9",
+		"unit": "None"
+	},
+	"fee_payable_to": {
+		"description": "Fee Payable To",
+		"unit": "None"
+	},
+	"tender_fee_exemption_allowed": {
+		"description": "Tender Fee Exemption Allowed",
+		"unit": "None"
+	},
+	"fee_payable_at": {
+		"description": "Fee Payable At",
+		"unit": "None"
+	},
+	"emd_amount_in_\u20b9": {
+		"description": "Emd Amount In \u20b9",
+		"unit": "None"
+	},
+	"emd_fee_type": {
+		"description": "Emd Fee Type",
+		"unit": "None"
+	},
+	"emd_payable_to": {
+		"description": "Emd Payable To",
+		"unit": "None"
+	},
+	"emd_through_bg/st_or_emd_exemption_allowed": {
+		"description": "Emd Through Bg/St Or Emd Exemption Allowed",
+		"unit": "None"
+	},
+	"emd_percentage": {
+		"description": "Emd Percentage",
+		"unit": "None"
+	},
+	"emd_payable_at": {
+		"description": "Emd Payable At",
+		"unit": "None"
+	},
+	"name": {
+		"description": "Name",
+		"unit": "None"
+	},
+	"description": {
+		"description": "Description",
+		"unit": "None"
+	},
+	"nda/pre_qualification": {
+		"description": "Nda/Pre Qualification",
+		"unit": "None"
+	},
+	"independent_external_monitor/remarks": {
+		"description": "Independent External Monitor/Remarks",
+		"unit": "None"
+	},
+	"tender_value_in_\u20b9": {
+		"description": "Tender Value In \u20b9",
+		"unit": "None"
+	},
+	"contract_type": {
+		"description": "Contract Type",
+		"unit": "None"
+	},
+	"location": {
+		"description": "Location",
+		"unit": "None"
+	},
+	"pre_bid_meeting_address": {
+		"description": "Pre Bid Meeting Address",
+		"unit": "None"
+	},
+	"should_allow_nda_tender": {
+		"description": "Should Allow Nda Tender",
+		"unit": "None"
+	},
+	"subsector": {
+		"description": "Subsector",
+		"unit": "None"
+	},
+	"period_of_work(days)": {
+		"description": "Period Of Work(Days)",
+		"unit": "None"
+	},
+	"pre_bid_meeting_place": {
+		"description": "Pre Bid Meeting Place",
+		"unit": "None"
+	},
+	"bid_opening_place": {
+		"description": "Bid Opening Place",
+		"unit": "None"
+	},
+	"product_category": {
+		"description": "Product Category",
+		"unit": "None"
+	},
+	"bid_validity(days)": {
+		"description": "Bid Validity(Days)",
+		"unit": "None"
+	},
+	"pincode": {
+		"description": "Pincode",
+		"unit": "None"
+	},
+	"pre_bid_meeting_date": {
+		"description": "Pre Bid Meeting Date",
+		"unit": "None"
+	},
+	"allow_preferential_bidder": {
+		"description": "Allow Preferential Bidder",
+		"unit": "None"
+	},
+	"published_date": {
+		"description": "Published Date",
+		"unit": "None"
+	},
+	"document_download_/_sale_start_date": {
+		"description": "Document Download / Sale Start Date",
+		"unit": "None"
+	},
+	"clarification_start_date": {
+		"description": "Clarification Start Date",
+		"unit": "None"
+	},
+	"bid_submission_start_date": {
+		"description": "Bid Submission Start Date",
+		"unit": "None"
+	},
+	"bid_opening_date": {
+		"description": "Bid Opening Date",
+		"unit": "None"
+	},
+	"document_download_/_sale_end_date": {
+		"description": "Document Download / Sale End Date",
+		"unit": "None"
+	},
+	"clarification_end_date": {
+		"description": "Clarification End Date",
+		"unit": "None"
+	},
+	"bid_submission_end_date": {
+		"description": "Bid Submission End Date",
+		"unit": "None"
+	},
+	"contact_name": {
+		"description": "Contact Name",
+		"unit": "None"
+	},
+	"contact_address": {
+		"description": "Contact Address",
+		"unit": "None"
+	},
+	"url": {
+		"description": "Url",
+		"unit": "None"
+	},
+	"bank_name": {
+		"description": "Bank Name",
+		"unit": "None"
+	},
+	"data_source": {
+		"description": "Data Source",
+		"unit": "None"
+	},
+	"country_code": {
+		"description": "Country Code",
+		"unit": "None"
+	},
+	"country": {
+		"description": "Country",
+		"unit": "None"
+	},
+	"map_coordinates": {
+		"description": "Map Coordinates",
+		"unit": "None"
+	},
+	"aug_id": {
+		"description": "Aug Id",
+		"unit": "None"
+	},
+	"project_or_tender": {
+		"description": "Project Or Tender",
+		"unit": "None"
+	},
+	"label": {
+		"description": "Label",
+		"unit": "None"
+	},
+	"state": {
+		"description": "State",
+		"unit": "None"
+	},
+	"county": {
+		"description": "County",
+		"unit": "None"
+	},
+	"locality": {
+		"description": "Locality",
+		"unit": "None"
+	},
+	"neighbourhood": {
+		"description": "Neighbourhood",
+		"unit": "None"
+	}
+}

@@ -1,0 +1,89 @@
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: iig-cron-wf
+  namespace: %ENV%
+spec:
+  serviceAccountName: workflow
+  schedule: "0 0 * * 0"
+  concurrencyPolicy: "Replace"
+  startingDeadlineSeconds: 0
+  successfulJobsHistoryLimit: 10
+  workflowSpec:
+    serviceAccountName: workflow
+    podGC:
+      strategy: OnWorkflowSuccess
+    ttlStrategy:
+      secondsAfterCompletion: 1800 # Time to live after workflow is completed, replaces ttlSecondsAfterFinished
+      secondsAfterSuccess: 1800
+    entrypoint: diamond
+    templates:
+    - name: iig
+      inputs:
+        parameters:
+        - name: step
+      container:
+        image: 965994533236.dkr.ecr.eu-west-3.amazonaws.com/projects_nip_iig/ingestion:%TAG%
+        command: ["python3", "client.py", "--step", "{{inputs.parameters.step}}"]
+        resources:
+          limits:
+            memory: 16Gi
+            cpu: 4000m
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aws-key
+              key: username
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-key
+              key: password
+        - name: ELASTICSEARCH_URL
+          valueFrom:
+            secretKeyRef:
+              name: elastic-key
+              key: url
+        - name: ELASTICSEARCH_USER
+          valueFrom:
+            secretKeyRef:
+              name: elastic-key
+              key: username
+        - name: ELASTICSEARCH_PASS
+          valueFrom:
+            secretKeyRef:
+              name: elastic-key
+              key: password
+    - name: diamond
+      dag:
+        tasks:
+        - name: MetadataScraper
+          template: iig
+          arguments:
+            parameters: [{name: step, value: 1}]
+        - name: MainScraper
+          dependencies: [MetadataScraper]
+          template: iig
+          arguments:
+            parameters: [{name: step, value: 2}]
+        - name: Cleaner
+          dependencies: [MainScraper]
+          template: iig
+          arguments:
+            parameters: [{name: step, value: 3}]
+        - name: Geocoder
+          dependencies: [Cleaner]
+          template: iig
+          arguments:
+            parameters: [{name: step, value: 4}]
+        - name: Standardiser
+          dependencies: [Geocoder]
+          template: iig
+          arguments:
+            parameters: [{name: step, value: 5}]
+        - name: ESIngestion
+          dependencies: [Standardiser]
+          template: iig
+          arguments:
+            parameters: [{name: step, value: 6}]

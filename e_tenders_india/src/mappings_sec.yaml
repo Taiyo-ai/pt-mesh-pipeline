@@ -1,0 +1,286 @@
+mappings:
+  properties:
+    allow_preferential_bidder:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    allow_two_stage_bidding:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    aug_id:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    bank_name:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    bid_opening_place:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    bid_submission_end_date:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    bid_submission_start_date:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    bid_validity(days):
+      type: long
+    clarification_end_date:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    clarification_start_date:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    contact_address:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    contact_name:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    contract_type:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    country:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    cover_details:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    document_download_sale_end_date:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    document_download_sale_start_date:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    emd_amount_in_usd:
+      type: float
+    "emd_amount_in_\u20B9":
+      type: long
+    emd_fee_type:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    emd_payable_at:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    emd_payable_to:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    emd_percentage:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    emd_through_bg_st_or_emd_exemption_allowed:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    fee_payable_at:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    fee_payable_to:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    form_of_contract:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    general_technical_evaluation_allowed:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    independent_external_monitor_remarks:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    instrument_type:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    is_multi_currency_allowed_for_boq:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    is_multi_currency_allowed_for_fee:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    itemwise_technical_evaluation_allowed:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    label:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    nda_pre_qualification:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    'no':
+      properties:
+        _of_covers:
+          type: long
+    organisation_chain:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    payment_mode:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    period_of_work(days):
+      type: float
+    pincode:
+      type: long
+    pre_bid_meeting_address:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    pre_bid_meeting_date:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    pre_bid_meeting_place:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    product_category:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    published_date:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    should_allow_nda_tender:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    tender_fee_exemption_allowed:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    tender_fee_in_usd:
+      type: float
+    "tender_fee_in_\u20B9":
+      type: long
+    tender_reference_number:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    tender_type:
+      fields:
+        keyword:
+          ignore_above: 256
+          type: keyword
+      type: text
+    "tender_value_in_\u20B9":
+      type: float
+settings:
+  index:
+    max_inner_result_window: '5000'
+    max_result_window: '500000'
+    number_of_replicas: '1'
+    number_of_shards: '5'

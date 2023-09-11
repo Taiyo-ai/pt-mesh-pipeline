@@ -1,0 +1,110 @@
+{
+  "description": {
+    "description": "Description",
+    "unit": "None"
+  },
+  "original_id": {
+    "description": "Original Id",
+    "unit": "None"
+  },
+  "url": {
+    "description": "Url",
+    "unit": "None"
+  },
+  "sector": {
+    "description": "Sector",
+    "unit": "None"
+  },
+  "location": {
+    "description": "Location",
+    "unit": "None"
+  },
+  "budget": {
+    "description": "Funding Requirement",
+    "unit": "USD"
+  },
+  "funding_details": {
+    "description": "Funding Details",
+    "unit": "None"
+  },
+  "name": {
+    "description": "Name",
+    "unit": "None"
+  },
+  "last_updated_date": {
+    "description": "Last Updated",
+    "unit": "None"
+  },
+  "subsector": {
+    "description": "Subsector",
+    "unit": "None"
+  },
+  "data_source": {
+    "description": "Data Source",
+    "unit": "None"
+  },
+  "country_name": {
+    "description": "Country Name",
+    "unit": "None"
+  },
+  "country_code": {
+    "description": "Country Code",
+    "unit": "None"
+  },
+  "region_name": {
+    "description": "Region Name",
+    "unit": "None"
+  },
+  "region_code": {
+    "description": "Region Code",
+    "unit": "None"
+  },
+  "aug_id": {
+    "description": "Aug Id",
+    "unit": "None"
+  },
+  "project_or_tender": {
+    "description": "Project Or Tender",
+    "unit": "None"
+  },
+  "country": {
+    "description": "Country",
+    "unit": "None"
+  },
+  "state": {
+    "description": "State",
+    "unit": "None"
+  },
+  "county": {
+    "description": "County",
+    "unit": "None"
+  },
+  "locality": {
+    "description": "Locality",
+    "unit": "None"
+  },
+  "neighbourhood": {
+    "description": "Neighbourhood",
+    "unit": "None"
+  },
+  "map_coordinates": {
+    "description": "Map Coordinates",
+    "unit": "None"
+  },
+  "industry_info": {
+    "description": "Industry Info",
+    "unit": "None"
+  },
+  "identified_sector": {
+    "description": "Identified Sector",
+    "unit": "None"
+  },
+  "identified_subsector": {
+    "description": "Identified Subsector",
+    "unit": "None"
+  },
+  "identified_status": {
+    "description": "Identified Status",
+    "unit": "None"
+  }
+}

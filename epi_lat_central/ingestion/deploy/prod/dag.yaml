@@ -1,0 +1,122 @@
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: epilatc-cron-wf
+  namespace: %ENV%
+spec:
+  serviceAccountName: workflow
+  schedule: "49 19 * * *"
+  concurrencyPolicy: "Replace"
+  startingDeadlineSeconds: 0
+  successfulJobsHistoryLimit: 10
+  workflowSpec:
+    serviceAccountName: workflow
+    entrypoint: diamond
+    onExit: exit-handler
+    templates:
+    - name: exit-handler
+      steps:
+      - - name: success
+          template: success
+          when: "{{workflow.status}} == Succeeded"
+        - name: faliure
+          template: faliure
+          when: "{{workflow.status}} != Succeeded"
+    - name: success
+      container:
+        env:
+          - name: SLACK_WEBHOOK
+            valueFrom:
+              secretKeyRef:
+                key: url
+                name: slack-webhook
+        image: 965994533236.dkr.ecr.eu-west-3.amazonaws.com/slack_bot_dags:v0.0.1
+        command: ["python3"] 
+        args: [ 
+          "main.py",
+          "{{workflow.name}}",
+          "{{workflow.namespace}}", "{{workflow.scheduledTime}}",
+          "{{workflow.status}}", "{{workflow.duration}}",
+        ]
+    - name: faliure
+      container:
+        env:
+          - name: SLACK_WEBHOOK
+            valueFrom:
+              secretKeyRef:
+                key: url
+                name: slack-webhook
+        image: 965994533236.dkr.ecr.eu-west-3.amazonaws.com/slack_bot_dags:v0.0.1
+        command: ["python3"] 
+        args: [ 
+          "main.py",
+          "{{workflow.name}}",
+          "{{workflow.namespace}}", "{{workflow.scheduledTime}}",
+          "{{workflow.status}}", "{{workflow.duration}}",
+          "{{workflow.failures}}"
+        ]
+    - name: epilatc
+      inputs:
+        parameters:
+        - name: step
+      container:
+        image: 965994533236.dkr.ecr.eu-west-3.amazonaws.com/tenders_epi_lat_central/ingestion:%TAG%
+        command: ["python3", "client.py", "--step", "{{inputs.parameters.step}}"]
+        resources:
+          requests:
+            memory: 25Gi
+            cpu: 4000m
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aws-key
+              key: username
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-key
+              key: password
+        - name: ELASTICSEARCH_URL
+          valueFrom:
+            secretKeyRef:
+              name: elastic-key
+              key: url
+        - name: ELASTICSEARCH_USER
+          valueFrom:
+            secretKeyRef:
+              name: elastic-key
+              key: username
+        - name: ELASTICSEARCH_PASS
+          valueFrom:
+            secretKeyRef:
+              name: elastic-key
+              key: password
+    - name: diamond
+      dag:
+        tasks:
+        - name: MainScraper
+          dependencies: []
+          template: epilatc
+          arguments:
+            parameters: [{name: step, value: 1}]
+        - name: Cleaner
+          dependencies: [MainScraper]
+          template: epilatc
+          arguments:
+            parameters: [{name: step, value: 2}]
+        - name: Geocoder
+          dependencies: [Cleaner]
+          template: epilatc
+          arguments:
+            parameters: [{name: step, value: 3}]
+        - name: Standardizer
+          dependencies: [Geocoder]
+          template: epilatc
+          arguments:
+            parameters: [{name: step, value: 4}]
+        - name: ESIngestion
+          dependencies: [Standardizer]
+          template: epilatc
+          arguments:
+            parameters: [{name: step, value: 5}]

@@ -1,0 +1,19 @@
+metadata:
+    description: Contains relative paths to Google Cloud Storage Bucket for different sources to be harvested
+    bucket_name: psd_data
+
+paths:
+    PPPINDIA:
+        reference_urls_path: projects/pppindia/metadata/project_ids_urls.csv
+        successful_urls_path: projects/pppindia/metadata/pppindia_success_urls.csv
+        failed_urls_path: projects/pppindia/metadata/pppindia_failed_urls.csv
+        master_data_path: projects/pppindia/raw/pppindia_master_data.csv
+        cleaned_data_path: projects/pppindia/cleaned/pppindia_cleaned_data.csv
+        geocoded_data_path: projects/pppindia/geocoded/pppindia_geocoded_data.csv
+        standardised_data_path: projects/pppindia/standardised/pppindia_standardised_data.csv
+        embeddings_path: projects/pppindia/embeddings
+        metadata_path: projects/pppindia/metadata/metadata.json
+
+location_mapping_paths:
+    official_names: 'location_metadata/Official country names.xlsx'
+    region_and_income_group: 'location_metadata/Region and income group.xlsx'
